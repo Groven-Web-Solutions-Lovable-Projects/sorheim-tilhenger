@@ -189,20 +189,21 @@ const KeySpecsTable = ({ specs }: { specs: SpecRow[] }) => (
     >
       Nøkkelspesifikasjoner
     </div>
-    <div>
+    <div className="grid grid-cols-2">
       {specs.map((spec, i) => (
         <div
           key={i}
-          className="flex items-center justify-between px-5 py-3.5"
+          className="flex flex-col px-5 py-3"
           style={{
-            background: i % 2 === 0 ? "hsl(0 0% 100%)" : "hsl(var(--secondary))",
-            borderBottom: i < specs.length - 1 ? "1px solid hsl(var(--border))" : undefined,
+            background: Math.floor(i / 2) % 2 === 0 ? "hsl(0 0% 100%)" : "hsl(var(--secondary))",
+            borderBottom: i < specs.length - 2 ? "1px solid hsl(var(--border))" : undefined,
+            borderRight: i % 2 === 0 ? "1px solid hsl(var(--border))" : undefined,
           }}
         >
-          <span className="text-sm" style={{ color: "hsl(var(--muted-foreground))" }}>
+          <span className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
             {spec.label}
           </span>
-          <span className="text-sm font-semibold" style={{ color: "hsl(var(--foreground))" }}>
+          <span className="text-sm font-semibold mt-0.5" style={{ color: "hsl(var(--foreground))" }}>
             {spec.value}
           </span>
         </div>
