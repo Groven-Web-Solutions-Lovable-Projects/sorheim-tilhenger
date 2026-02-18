@@ -185,27 +185,33 @@ const Gallery = ({ images, title }: { images: string[]; title: string }) => {
 // ── Key Specs Table ───────────────────────────────────────────────────────────
 
 const KeySpecsTable = ({ specs }: { specs: SpecRow[] }) => (
-  <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "hsl(var(--border))" }}>
+  <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "hsl(var(--border))" }}>
     <div
       className="px-5 py-3.5 text-xs font-bold uppercase tracking-widest border-b"
-      style={{ background: "hsl(0 0% 100%)", color: "hsl(var(--muted-foreground))", borderColor: "hsl(var(--border))" }}
+      style={{ background: "hsl(var(--secondary))", color: "hsl(var(--primary))", borderColor: "hsl(var(--border))" }}
     >
       Nøkkelspesifikasjoner
     </div>
-    <div className="grid grid-cols-2 bg-white">
+    <div className="grid grid-cols-2">
       {specs.map((spec, i) => (
         <div
           key={i}
-          className="flex flex-col px-5 py-3.5"
+          className="flex flex-col px-5 py-4 gap-1 relative overflow-hidden"
           style={{
+            background: "hsl(0 0% 100%)",
             borderBottom: i < specs.length - 2 ? "1px solid hsl(var(--border))" : undefined,
             borderRight: i % 2 === 0 ? "1px solid hsl(var(--border))" : undefined,
           }}
         >
+          {/* Subtle accent stripe on top */}
+          <div
+            className="absolute top-0 left-0 right-0 h-0.5"
+            style={{ background: i % 3 === 0 ? "hsl(var(--primary) / 0.35)" : i % 3 === 1 ? "hsl(var(--accent) / 0.45)" : "hsl(var(--primary) / 0.18)" }}
+          />
           <span className="text-xs font-medium" style={{ color: "hsl(var(--muted-foreground))" }}>
             {spec.label}
           </span>
-          <span className="text-sm font-semibold mt-0.5" style={{ color: "hsl(var(--foreground))" }}>
+          <span className="text-sm font-bold" style={{ color: "hsl(var(--foreground))" }}>
             {spec.value}
           </span>
         </div>
