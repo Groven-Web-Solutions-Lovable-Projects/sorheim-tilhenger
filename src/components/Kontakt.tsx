@@ -184,7 +184,7 @@ const Kontakt = () => {
         {/* Footer line */}
         <div className="mt-20 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} K. Sørheim AS</p>
-          <p>Org.nr. registreres ved forespørsel</p>
+          <p>Org.nr. 935 381 665</p>
         </div>
 
       </div>
