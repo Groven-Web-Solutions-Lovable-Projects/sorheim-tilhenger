@@ -46,7 +46,7 @@ interface TrailerData {
 const trailerData: Record<string, TrailerData> = {
   "1": {
     id: 1,
-    images: [bockmannImg, bockmannImg, bockmannImg, bockmannImg],
+    images: [bockmannImg, bockmannFront, bockmannRear, bockmannInterior],
     title: "BÖCKMANN Big Master L",
     subtitle: "2021 · L-utgave",
     price: "kr 150 000",
