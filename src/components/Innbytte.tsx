@@ -74,15 +74,15 @@ const Innbytte = () => {
           style={{ backgroundColor: "hsl(var(--primary))" }}
         >
           <div>
-            <p className="text-lg font-bold mb-1" style={{ color: "hsl(0 0% 100%)" }}>
-              Klar for å bytte tilhenger?
-            </p>
-            <p className="text-sm" style={{ color: "hsl(0 0% 80%)" }}>
-              Ring Karl i dag for en uforpliktende vurdering av din tilhenger.
-            </p>
-          </div>
-          <a
-            href="tel:+4700000000"
+          <p className="text-lg font-bold mb-1" style={{ color: "hsl(0 0% 100%)" }}>
+            Klar for å bytte tilhenger?
+          </p>
+          <p className="text-sm" style={{ color: "hsl(0 0% 80%)" }}>
+            Ring Karl i dag for en uforpliktende vurdering av din tilhenger.
+          </p>
+        </div>
+        <a
+          href="tel:+4797331920"
             className="shrink-0 inline-flex items-center gap-3 px-7 py-4 rounded-xl text-sm font-semibold transition-all duration-200 bg-white hover:bg-secondary"
             style={{ color: "hsl(var(--primary))" }}
           >

@@ -56,7 +56,7 @@ const Hero = () => {
             Utforsk tilhengere
             <ChevronRight size={18} />
           </a>
-          <a href="tel:+4700000000" className="btn-secondary-hero justify-center sm:justify-start">
+          <a href="tel:+4797331920" className="btn-secondary-hero justify-center sm:justify-start">
             <Phone size={18} />
             Snakk med Karl
           </a>
