@@ -61,7 +61,7 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
   const navigate = useNavigate();
   return (
   <article className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-border">
-    {/* Bilde */}
+    {/* Bilde med gradient-overgang */}
     <div className="relative overflow-hidden aspect-[16/10] bg-muted">
       <img
         src={trailer.image}
@@ -69,6 +69,8 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
         className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
         loading="lazy"
       />
+      {/* Gradient ned mot kortinnhold */}
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/60 to-transparent pointer-events-none" />
       {/* Badge */}
       {trailer.badge && (
         <span
@@ -84,16 +86,31 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
     </div>
 
     {/* Innhold */}
-    <div className="flex flex-col flex-1 p-7 gap-5">
-      {/* Tittel */}
-      <h3 className="text-xl font-bold leading-snug text-foreground">{trailer.title}</h3>
+    <div className="flex flex-col flex-1 px-7 pt-6 pb-7 gap-4">
 
-      {/* Pris – alltid fremtredende */}
-      <div
-        className="text-2xl font-extrabold"
-        style={{ color: "hsl(var(--primary))" }}
-      >
-        {trailer.price}
+      {/* Tittel + årsmodell */}
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-xl font-bold leading-snug text-foreground">{trailer.title}</h3>
+        <span
+          className="shrink-0 text-xs font-semibold px-2.5 py-1 rounded-md mt-0.5"
+          style={{
+            backgroundColor: "hsl(var(--secondary))",
+            color: "hsl(var(--primary))",
+          }}
+        >
+          {trailer.year}
+        </span>
+      </div>
+
+      {/* Pris med label */}
+      <div>
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-0.5">Pris</p>
+        <p
+          className="text-3xl font-extrabold tracking-tight"
+          style={{ color: "hsl(var(--primary))" }}
+        >
+          {trailer.price}
+        </p>
       </div>
 
       {/* Tagline */}
@@ -102,31 +119,40 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
       {/* Skillelinje */}
       <div className="border-t border-border" />
 
-      {/* Nøkkelpunkter – én per rad for å unngå overlapp */}
-      <ul className="flex flex-col gap-3">
+      {/* Spesifikasjoner – datablad-grid */}
+      <div className="grid grid-cols-3 gap-3">
         {trailer.specs.map((spec, i) => (
-          <li key={i} className="flex items-center gap-3 text-sm">
-            <span style={{ color: "hsl(var(--accent))" }} className="shrink-0">
-              {spec.icon}
-            </span>
-            <span className="text-muted-foreground flex-1">{spec.label}</span>
-            <span className="font-semibold text-foreground">{spec.value}</span>
-          </li>
+          <div
+            key={i}
+            className="flex flex-col items-center text-center gap-1.5 rounded-xl px-2 py-3"
+            style={{ backgroundColor: "hsl(var(--secondary))" }}
+          >
+            <span style={{ color: "hsl(var(--accent))" }}>{spec.icon}</span>
+            <span className="text-sm font-bold text-foreground leading-tight">{spec.value}</span>
+            <span className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium leading-tight">{spec.label}</span>
+          </div>
         ))}
-      </ul>
+      </div>
 
       {/* CTA */}
       <button
-        className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn"
+        className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn border-2"
         style={{
-          backgroundColor: "hsl(var(--primary))",
-          color: "hsl(var(--primary-foreground))",
+          borderColor: "hsl(var(--primary))",
+          color: "hsl(var(--primary))",
+          backgroundColor: "transparent",
         }}
-        onMouseEnter={e => (e.currentTarget.style.backgroundColor = "hsl(212 72% 30%)")}
-        onMouseLeave={e => (e.currentTarget.style.backgroundColor = "hsl(var(--primary))")}
+        onMouseEnter={e => {
+          e.currentTarget.style.backgroundColor = "hsl(var(--primary))";
+          e.currentTarget.style.color = "hsl(var(--primary-foreground))";
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.backgroundColor = "transparent";
+          e.currentTarget.style.color = "hsl(var(--primary))";
+        }}
         onClick={() => navigate(`/tilhenger/${trailer.id}`)}
       >
-        Les mer om denne tilhengeren
+        Se mer informasjon
         <ChevronRight size={16} className="group-hover/btn:translate-x-0.5 transition-transform" />
       </button>
     </div>
