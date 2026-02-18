@@ -219,7 +219,7 @@ const TrailerListings = () => (
       <p className="mt-10 text-center text-sm text-muted-foreground">
         Ser du ikke det du leter etter?{" "}
         <a
-          href="tel:+4700000000"
+          href="tel:+4797331920"
           className="font-semibold underline underline-offset-2"
           style={{ color: "hsl(var(--primary))" }}
         >
