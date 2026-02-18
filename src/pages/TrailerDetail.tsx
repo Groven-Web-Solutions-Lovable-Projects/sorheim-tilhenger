@@ -17,8 +17,6 @@ import {
   FileText,
   CheckCircle2,
   ArrowDown,
-  Calendar,
-  Weight,
 } from "lucide-react";
 import bockmannImg from "@/assets/bockmann-big-master.jpg";
 import bockmannFront from "@/assets/bockmann-front.jpg";
@@ -418,81 +416,45 @@ const TrailerDetail = () => {
         </div>
 
         {/* Innhold – sentrert mot bunnen */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 pb-10 sm:pb-14">
+        <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 sm:pb-16">
           <div className="max-w-6xl mx-auto px-6 sm:px-10">
 
-            {/* Badge */}
-            <span
-              className="inline-block mb-4 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
-              style={{
-                background: "hsl(var(--accent) / 0.25)",
-                color: "hsl(196 80% 78%)",
-                border: "1px solid hsl(var(--accent) / 0.45)",
-                backdropFilter: "blur(6px)",
-              }}
+            {/* Kategori */}
+            <p
+              className="text-xs font-semibold uppercase tracking-[0.2em] mb-4"
+              style={{ color: "hsl(196 80% 72%)" }}
             >
               {trailer.badge}
-            </span>
+            </p>
 
             {/* Tittel */}
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-3"
-              style={{ color: "hsl(0 0% 100%)", textShadow: "0 2px 24px hsl(215 50% 6% / 0.5)" }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight mb-5"
+              style={{ color: "hsl(0 0% 100%)" }}
             >
               {trailer.title}
             </h1>
 
-            {/* Nøkkelinfo-pill-rad */}
-            <div className="flex flex-wrap items-center gap-3 mb-7">
-              <div
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
-                style={{
-                  background: "hsl(0 0% 0% / 0.38)",
-                  color: "hsl(0 0% 95%)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid hsl(0 0% 100% / 0.15)",
-                }}
-              >
-                <Calendar size={14} style={{ color: "hsl(196 80% 72%)" }} />
-                {trailer.subtitle}
-              </div>
-              <div
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
-                style={{
-                  background: "hsl(0 0% 0% / 0.38)",
-                  color: "hsl(0 0% 95%)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid hsl(0 0% 100% / 0.15)",
-                }}
-              >
-                <Weight size={14} style={{ color: "hsl(196 80% 72%)" }} />
-                {trailer.keySpecs.find(s => s.label === "Totalvekt")?.value ?? "–"} totalvekt
-              </div>
-              {/* Pris */}
-              <div
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold"
-                style={{
-                  background: "hsl(var(--primary))",
-                  color: "hsl(var(--primary-foreground))",
-                  boxShadow: "0 2px 16px hsl(var(--primary) / 0.45)",
-                }}
-              >
-                {trailer.price}
-              </div>
-            </div>
+            {/* Pris + årsmodell – én linje, minimalt */}
+            <p
+              className="text-xl sm:text-2xl font-semibold mb-8"
+              style={{ color: "hsl(0 0% 100% / 0.7)" }}
+            >
+              {trailer.price} &nbsp;·&nbsp; {trailer.subtitle}
+            </p>
 
-            {/* Scroll-ned knapp */}
+            {/* CTA */}
             <button
               onClick={() => document.getElementById("tilhenger-detaljer")?.scrollIntoView({ behavior: "smooth" })}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
               style={{
                 background: "hsl(0 0% 100%)",
                 color: "hsl(var(--primary))",
-                boxShadow: "0 4px 20px hsl(215 50% 6% / 0.35)",
+                boxShadow: "0 4px 24px hsl(215 50% 6% / 0.4)",
               }}
             >
-              Se mer informasjon
-              <ArrowDown size={16} />
+              Se hele annonsen
+              <ArrowDown size={15} />
             </button>
           </div>
         </div>
