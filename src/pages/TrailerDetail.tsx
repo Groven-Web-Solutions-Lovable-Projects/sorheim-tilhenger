@@ -383,7 +383,7 @@ const TrailerDetail = () => {
           HERO – full-width cinematic
       ══════════════════════════════════════════════ */}
       <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden">
-        {/* Bakgrunnsbilde – portrait på mobil, landscape på desktop */}
+        {/* Bakgrunnsbilde – Ken Burns sakte zoom */}
         <picture className="absolute inset-0 w-full h-full">
           <source media="(max-width: 639px)" srcSet={trailerHeroMobileImg} />
           <source media="(min-width: 640px)" srcSet={trailerHeroImg} />
@@ -391,6 +391,7 @@ const TrailerDetail = () => {
             src={trailerHeroImg}
             alt={trailer.title}
             className="w-full h-full object-cover object-center"
+            style={{ animation: "hero-zoom 12s ease-out forwards" }}
             loading="eager"
           />
         </picture>
@@ -405,7 +406,7 @@ const TrailerDetail = () => {
         />
 
         {/* Breadcrumb – øverst */}
-        <div className="absolute top-0 left-0 right-0 z-10">
+        <div className="absolute top-0 left-0 right-0 z-10" style={{ animation: "hero-fade-up 0.8s ease-out both" }}>
           <div className="max-w-6xl mx-auto px-6 sm:px-10 pt-6 flex items-center gap-2 text-sm">
             <Link
               to="/#tilhengere"
@@ -427,15 +428,15 @@ const TrailerDetail = () => {
             {/* Tittel */}
             <h1
               className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight mb-5"
-              style={{ color: "hsl(0 0% 100%)" }}
+              style={{ color: "hsl(0 0% 100%)", animation: "hero-fade-up 0.8s 0.15s ease-out both" }}
             >
               {trailer.title}
             </h1>
 
-            {/* Pris + årsmodell – én linje, minimalt */}
+            {/* Pris + årsmodell */}
             <p
               className="text-xl sm:text-2xl font-semibold mb-8"
-              style={{ color: "hsl(0 0% 100% / 0.7)" }}
+              style={{ color: "hsl(0 0% 100% / 0.7)", animation: "hero-fade-up 0.8s 0.3s ease-out both" }}
             >
               {trailer.price} &nbsp;·&nbsp; {trailer.subtitle}
             </p>
@@ -448,6 +449,7 @@ const TrailerDetail = () => {
                 background: "hsl(0 0% 100%)",
                 color: "hsl(var(--primary))",
                 boxShadow: "0 4px 24px hsl(215 50% 6% / 0.4)",
+                animation: "hero-fade-up 0.8s 0.45s ease-out both",
               }}
             >
               Se mer informasjon
