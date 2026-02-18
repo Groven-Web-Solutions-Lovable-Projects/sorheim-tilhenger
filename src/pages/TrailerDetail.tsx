@@ -5,9 +5,7 @@ import {
   Mail,
   ChevronLeft,
   ChevronRight,
-  Weight,
   Package,
-  Calendar,
   Camera,
   Shield,
   Zap,
@@ -111,11 +109,10 @@ const Gallery = ({ images, title }: { images: string[]; title: string }) => {
         <img
           src={images[active]}
           alt={`${title} – bilde ${active + 1}`}
-          className="w-full h-full object-cover transition-opacity duration-200"
-          style={{ opacity: fade ? 0 : 1 }}
+          className="w-full h-full object-cover"
+          style={{ opacity: fade ? 0 : 1, transition: "opacity 0.18s ease" }}
         />
 
-        {/* Counter badge */}
         <span
           className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full"
           style={{
@@ -127,7 +124,6 @@ const Gallery = ({ images, title }: { images: string[]; title: string }) => {
           {active + 1} / {images.length}
         </span>
 
-        {/* Arrows */}
         {images.length > 1 && (
           <>
             <button
@@ -171,7 +167,7 @@ const Gallery = ({ images, title }: { images: string[]; title: string }) => {
                 aspectRatio: "4/3",
                 outline: i === active ? "2.5px solid hsl(var(--primary))" : "2.5px solid transparent",
                 outlineOffset: "2px",
-                opacity: i === active ? 1 : 0.6,
+                opacity: i === active ? 1 : 0.55,
               }}
             >
               <img src={src} alt={`Miniatyrbilde ${i + 1}`} className="w-full h-full object-cover" />
@@ -183,15 +179,143 @@ const Gallery = ({ images, title }: { images: string[]; title: string }) => {
   );
 };
 
-// ── Reusable section ──────────────────────────────────────────────────────────
+// ── Key Specs Table ───────────────────────────────────────────────────────────
+
+const KeySpecsTable = ({ specs }: { specs: SpecRow[] }) => (
+  <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "hsl(var(--border))" }}>
+    <div
+      className="px-5 py-3 text-xs font-bold uppercase tracking-widest"
+      style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+    >
+      Nøkkelspesifikasjoner
+    </div>
+    <div>
+      {specs.map((spec, i) => (
+        <div
+          key={i}
+          className="flex items-center justify-between px-5 py-3.5"
+          style={{
+            background: i % 2 === 0 ? "hsl(0 0% 100%)" : "hsl(var(--secondary))",
+            borderBottom: i < specs.length - 1 ? "1px solid hsl(var(--border))" : undefined,
+          }}
+        >
+          <span className="text-sm" style={{ color: "hsl(var(--muted-foreground))" }}>
+            {spec.label}
+          </span>
+          <span className="text-sm font-semibold" style={{ color: "hsl(var(--foreground))" }}>
+            {spec.value}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// ── Info (badge + title + price + intro) ──────────────────────────────────────
+
+const InfoBlock = ({ trailer }: { trailer: TrailerData }) => (
+  <>
+    <span
+      className="self-start text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
+      style={{ background: "hsl(var(--secondary))", color: "hsl(var(--primary))" }}
+    >
+      {trailer.badge}
+    </span>
+
+    <div>
+      <h1
+        className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight"
+        style={{ color: "hsl(var(--foreground))" }}
+      >
+        {trailer.title}
+      </h1>
+      <p className="mt-1 text-lg font-semibold" style={{ color: "hsl(var(--muted-foreground))" }}>
+        {trailer.subtitle}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "hsl(var(--muted-foreground))" }}>
+        Prisantydning
+      </p>
+      <p className="text-5xl font-extrabold leading-none" style={{ color: "hsl(var(--primary))" }}>
+        {trailer.price}
+      </p>
+    </div>
+
+    <p className="text-base leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
+      {trailer.intro}
+    </p>
+  </>
+);
+
+// ── CTA buttons ───────────────────────────────────────────────────────────────
+
+const CTAButtons = ({ trailer }: { trailer: TrailerData }) => {
+  const mailtoLink = `mailto:${trailer.contactEmail}?subject=Forespørsel: ${encodeURIComponent(trailer.title)}&body=Hei ${trailer.sellerName},%0A%0AJeg er interessert i ${encodeURIComponent(trailer.title)} (${trailer.subtitle}).%0A%0AMvh`;
+  return (
+    <div className="flex flex-col gap-3">
+      <a
+        href={`tel:${trailer.contactPhone}`}
+        className="flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
+        style={{
+          background: "hsl(var(--primary))",
+          color: "hsl(var(--primary-foreground))",
+          boxShadow: "0 4px 16px hsl(var(--primary) / 0.32)",
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = "hsl(212 72% 30%)")}
+        onMouseLeave={e => (e.currentTarget.style.background = "hsl(var(--primary))")}
+      >
+        <Phone size={18} />
+        Ring {trailer.sellerName}
+      </a>
+      <a
+        href={mailtoLink}
+        className="flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-semibold border transition-all duration-200 hover:-translate-y-0.5"
+        style={{
+          background: "hsl(0 0% 100%)",
+          color: "hsl(var(--primary))",
+          borderColor: "hsl(var(--primary) / 0.3)",
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = "hsl(var(--secondary))")}
+        onMouseLeave={e => (e.currentTarget.style.background = "hsl(0 0% 100%)")}
+      >
+        <Mail size={18} />
+        Send e-post
+      </a>
+    </div>
+  );
+};
+
+// ── Trust signals ─────────────────────────────────────────────────────────────
+
+const TrustSignals = () => (
+  <div
+    className="rounded-2xl border p-5 flex flex-col gap-3"
+    style={{ borderColor: "hsl(var(--border))", background: "hsl(var(--secondary))" }}
+  >
+    <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "hsl(var(--muted-foreground))" }}>
+      Trygg handel
+    </p>
+    {[
+      { icon: <MapPin size={15} />, text: "Lokal selger – Vestlandet" },
+      { icon: <Eye size={15} />, text: "Besiktigelse mulig etter avtale" },
+      { icon: <RefreshCw size={15} />, text: "Innbytte vurderes" },
+    ].map((item, i) => (
+      <div key={i} className="flex items-center gap-3 text-sm">
+        <span className="shrink-0" style={{ color: "hsl(var(--accent))" }}>{item.icon}</span>
+        <span style={{ color: "hsl(var(--foreground))" }}>{item.text}</span>
+      </div>
+    ))}
+  </div>
+);
+
+// ── Section wrapper ───────────────────────────────────────────────────────────
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <section className="flex flex-col gap-5">
     <div className="flex items-center gap-3">
-      <h2
-        className="text-xl font-bold tracking-tight"
-        style={{ color: "hsl(var(--foreground))" }}
-      >
+      <h2 className="text-xl font-bold tracking-tight" style={{ color: "hsl(var(--foreground))" }}>
         {title}
       </h2>
       <div className="flex-1 h-px" style={{ background: "hsl(var(--border))" }} />
@@ -206,55 +330,12 @@ const EquipList = ({ items }: { items: string[] }) => (
   <ul className="flex flex-col gap-2.5">
     {items.map((item, i) => (
       <li key={i} className="flex items-start gap-3 text-sm" style={{ color: "hsl(var(--foreground))" }}>
-        <CheckCircle2
-          size={16}
-          className="mt-0.5 shrink-0"
-          style={{ color: "hsl(var(--accent))" }}
-        />
+        <CheckCircle2 size={16} className="mt-0.5 shrink-0" style={{ color: "hsl(var(--accent))" }} />
         {item}
       </li>
     ))}
   </ul>
 );
-
-// ── CTA panel ─────────────────────────────────────────────────────────────────
-
-const CTAPanel = ({ trailer }: { trailer: TrailerData }) => {
-  const mailtoLink = `mailto:${trailer.contactEmail}?subject=Forespørsel: ${encodeURIComponent(trailer.title)}&body=Hei ${trailer.sellerName},%0A%0AJeg er interessert i ${encodeURIComponent(trailer.title)} (${trailer.subtitle}).%0A%0AMvh`;
-
-  return (
-    <div className="flex flex-col gap-3 w-full">
-      <a
-        href={`tel:${trailer.contactPhone}`}
-        className="flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
-        style={{
-          background: "hsl(var(--primary))",
-          color: "hsl(var(--primary-foreground))",
-          boxShadow: "0 4px 16px hsl(var(--primary) / 0.35)",
-        }}
-        onMouseEnter={e => (e.currentTarget.style.background = "hsl(212 72% 30%)")}
-        onMouseLeave={e => (e.currentTarget.style.background = "hsl(var(--primary))")}
-      >
-        <Phone size={18} />
-        Ring {trailer.sellerName}
-      </a>
-      <a
-        href={mailtoLink}
-        className="flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-semibold border transition-all duration-200 hover:-translate-y-0.5"
-        style={{
-          background: "hsl(0 0% 100%)",
-          color: "hsl(var(--primary))",
-          borderColor: "hsl(var(--primary) / 0.35)",
-        }}
-        onMouseEnter={e => (e.currentTarget.style.background = "hsl(var(--secondary))")}
-        onMouseLeave={e => (e.currentTarget.style.background = "hsl(0 0% 100%)")}
-      >
-        <Mail size={18} />
-        Send e-post
-      </a>
-    </div>
-  );
-};
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 
@@ -267,9 +348,7 @@ const TrailerDetail = () => {
       <main className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-2xl font-bold mb-2">Tilhenger ikke funnet</p>
-          <Link to="/" className="text-primary underline">
-            Tilbake til oversikt
-          </Link>
+          <Link to="/" className="text-primary underline">Tilbake til oversikt</Link>
         </div>
       </main>
     );
@@ -278,7 +357,7 @@ const TrailerDetail = () => {
   return (
     <main className="min-h-screen bg-background">
 
-      {/* ── Breadcrumb ── */}
+      {/* Breadcrumb */}
       <div className="border-b bg-card">
         <div className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center gap-2 text-sm">
           <Link
@@ -296,163 +375,66 @@ const TrailerDetail = () => {
 
       <div className="max-w-6xl mx-auto px-6 sm:px-10 py-12 sm:py-16 flex flex-col gap-20">
 
-        {/* ════════════════════════════════════════════════
-            TOPPSEKSJON – Galleri + infopanel
-        ════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-10 lg:gap-14 items-start">
+        {/* ══════════════════════════════════════════════
+            TOPPSEKSJON
+        ══════════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-14 items-start">
 
-          {/* Venstre – Galleri */}
-          <Gallery images={trailer.images} title={trailer.title} />
+          {/* ── VENSTRE: Galleri + Nøkkelspesifikasjoner ── */}
+          <div className="flex flex-col gap-6">
+            {/* 1. Galleri (alltid øverst) */}
+            <Gallery images={trailer.images} title={trailer.title} />
 
-          {/* Høyre – Infopanel */}
-          <div className="flex flex-col gap-6 lg:sticky lg:top-8">
-
-            {/* Badge */}
-            <span
-              className="self-start text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
-              style={{
-                background: "hsl(var(--secondary))",
-                color: "hsl(var(--primary))",
-              }}
-            >
-              {trailer.badge}
-            </span>
-
-            {/* Tittel */}
-            <div>
-              <h1
-                className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight"
-                style={{ color: "hsl(var(--foreground))" }}
-              >
-                {trailer.title}
-              </h1>
-              <p
-                className="mt-1 text-lg font-semibold"
-                style={{ color: "hsl(var(--muted-foreground))" }}
-              >
-                {trailer.subtitle}
-              </p>
+            {/* 2. Mobil: Navn, pris og intro (skjult på desktop) */}
+            <div className="flex flex-col gap-5 lg:hidden">
+              <InfoBlock trailer={trailer} />
             </div>
 
-            {/* Pris */}
-            <div>
-              <p
-                className="text-xs font-bold uppercase tracking-widest mb-1"
-                style={{ color: "hsl(var(--muted-foreground))" }}
-              >
-                Prisantydning
-              </p>
-              <p
-                className="text-5xl font-extrabold leading-none"
-                style={{ color: "hsl(var(--primary))" }}
-              >
-                {trailer.price}
-              </p>
-            </div>
+            {/* 3. Nøkkelspesifikasjoner (under galleri på desktop, etter info på mobil) */}
+            <KeySpecsTable specs={trailer.keySpecs} />
 
-            {/* Intro */}
-            <p
-              className="text-base leading-relaxed"
-              style={{ color: "hsl(var(--muted-foreground))" }}
-            >
-              {trailer.intro}
-            </p>
-
-            {/* Faktaboks – nøkkelspesifikasjoner */}
-            <div
-              className="rounded-2xl border overflow-hidden"
-              style={{ borderColor: "hsl(var(--border))" }}
-            >
-              <div
-                className="px-5 py-3 text-xs font-bold uppercase tracking-widest"
-                style={{
-                  background: "hsl(var(--primary))",
-                  color: "hsl(var(--primary-foreground))",
-                }}
-              >
-                Nøkkelspesifikasjoner
-              </div>
-              <div className="divide-y" style={{ borderColor: "hsl(var(--border))" }}>
-                {trailer.keySpecs.map((spec, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between px-5 py-3"
-                    style={{
-                      background: i % 2 === 0 ? "hsl(0 0% 100%)" : "hsl(var(--secondary))",
-                    }}
-                  >
-                    <span
-                      className="text-sm"
-                      style={{ color: "hsl(var(--muted-foreground))" }}
-                    >
-                      {spec.label}
-                    </span>
-                    <span
-                      className="text-sm font-semibold"
-                      style={{ color: "hsl(var(--foreground))" }}
-                    >
-                      {spec.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA */}
-            <CTAPanel trailer={trailer} />
-
-            {/* Tillitssignaler */}
-            <div
-              className="rounded-2xl border p-5 flex flex-col gap-3"
-              style={{
-                borderColor: "hsl(var(--border))",
-                background: "hsl(var(--secondary))",
-              }}
-            >
-              <p
-                className="text-xs font-bold uppercase tracking-widest"
-                style={{ color: "hsl(var(--muted-foreground))" }}
-              >
-                Trygg handel
-              </p>
-              {[
-                { icon: <MapPin size={15} />, text: "Lokal selger – Vestlandet" },
-                { icon: <Eye size={15} />, text: "Besiktigelse mulig etter avtale" },
-                { icon: <RefreshCw size={15} />, text: "Innbytte vurderes" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 text-sm">
-                  <span className="shrink-0" style={{ color: "hsl(var(--accent))" }}>
-                    {item.icon}
-                  </span>
-                  <span style={{ color: "hsl(var(--foreground))" }}>{item.text}</span>
-                </div>
-              ))}
+            {/* 4. Mobil: CTA + tillitssignaler (skjult på desktop) */}
+            <div className="flex flex-col gap-4 lg:hidden">
+              <CTAButtons trailer={trailer} />
+              <TrustSignals />
             </div>
           </div>
+
+          {/* ── HØYRE: Sticky boks (kun desktop) ── */}
+          <aside className="hidden lg:flex flex-col gap-0 sticky top-8 self-start">
+            <div
+              className="rounded-2xl border bg-card flex flex-col gap-6 p-7"
+              style={{
+                borderColor: "hsl(var(--border))",
+                boxShadow: "0 4px 32px hsl(215 50% 6% / 0.09)",
+              }}
+            >
+              <InfoBlock trailer={trailer} />
+
+              {/* Separator */}
+              <div className="h-px" style={{ background: "hsl(var(--border))" }} />
+
+              <CTAButtons trailer={trailer} />
+              <TrustSignals />
+            </div>
+          </aside>
         </div>
 
-        {/* ════════════════════════════════════════════════
-            SCROLLBART INNHOLD
-        ════════════════════════════════════════════════ */}
+        {/* ══════════════════════════════════════════════
+            MER INFORMASJON (scrollbart innhold)
+        ══════════════════════════════════════════════ */}
         <div className="flex flex-col gap-16 max-w-3xl">
 
-          {/* Komfort & Kjøreegenskaper */}
           <Section title="Komfort & Kjøreegenskaper">
             <div
               className="rounded-2xl border p-7 flex flex-col gap-5"
               style={{ borderColor: "hsl(var(--border))", background: "hsl(0 0% 100%)" }}
             >
               <div>
-                <h3
-                  className="font-semibold text-base mb-2"
-                  style={{ color: "hsl(var(--foreground))" }}
-                >
+                <h3 className="font-semibold text-base mb-2" style={{ color: "hsl(var(--foreground))" }}>
                   WCF Plus fjæringssystem
                 </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "hsl(var(--muted-foreground))" }}
-                >
+                <p className="text-sm leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
                   WCF Plus er BÖCKMANN sitt toppmoderne understellssystem med bærebro til hvert
                   hjul, kombinert fjær og støtdemper. Systemet absorberer støt og vibrasjoner
                   svært effektivt og gir hesten en skånsom og stabil reise – selv på dårlig vei.
@@ -472,102 +454,52 @@ const TrailerDetail = () => {
             </div>
           </Section>
 
-          {/* Utstyr & Detaljer */}
           <Section title="Utstyr & Detaljer">
             <div className="grid sm:grid-cols-2 gap-5">
-
-              {/* Salrom & Interiør */}
               <div
                 className="rounded-2xl border p-6 flex flex-col gap-4"
                 style={{ borderColor: "hsl(var(--border))", background: "hsl(0 0% 100%)" }}
               >
                 <div className="flex items-center gap-2">
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center"
-                    style={{ background: "hsl(var(--secondary))" }}
-                  >
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "hsl(var(--secondary))" }}>
                     <Package size={16} style={{ color: "hsl(var(--primary))" }} />
                   </div>
-                  <h3 className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>
-                    Salrom & Interiør
-                  </h3>
+                  <h3 className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>Salrom & Interiør</h3>
                 </div>
-                <EquipList
-                  items={[
-                    "To separate innganger",
-                    "2 uttrekkbare salhengere",
-                    "Ekstra tykk gulvmatte",
-                    "Kamera inkludert og i orden",
-                    "Original BÖCKMANN fôr-bøtte",
-                  ]}
-                />
+                <EquipList items={["To separate innganger", "2 uttrekkbare salhengere", "Ekstra tykk gulvmatte", "Kamera inkludert og i orden", "Original BÖCKMANN fôr-bøtte"]} />
               </div>
 
-              {/* Lys & Elektrisk */}
               <div
                 className="rounded-2xl border p-6 flex flex-col gap-4"
                 style={{ borderColor: "hsl(var(--border))", background: "hsl(0 0% 100%)" }}
               >
                 <div className="flex items-center gap-2">
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center"
-                    style={{ background: "hsl(var(--secondary))" }}
-                  >
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "hsl(var(--secondary))" }}>
                     <Zap size={16} style={{ color: "hsl(var(--primary))" }} />
                   </div>
-                  <h3 className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>
-                    Lys & Elektrisk
-                  </h3>
+                  <h3 className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>Lys & Elektrisk</h3>
                 </div>
-                <EquipList
-                  items={[
-                    "Alt lys fungerer perfekt",
-                    "Blått nattlys innvendig",
-                    "Nye lyspærer montert",
-                    "13-pols kontakt",
-                  ]}
-                />
+                <EquipList items={["Alt lys fungerer perfekt", "Blått nattlys innvendig", "Nye lyspærer montert", "13-pols kontakt"]} />
               </div>
 
-              {/* Dekk & Sikkerhet */}
               <div
                 className="rounded-2xl border p-6 flex flex-col gap-4 sm:col-span-2"
                 style={{ borderColor: "hsl(var(--border))", background: "hsl(0 0% 100%)" }}
               >
                 <div className="flex items-center gap-2">
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center"
-                    style={{ background: "hsl(var(--secondary))" }}
-                  >
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "hsl(var(--secondary))" }}>
                     <Shield size={16} style={{ color: "hsl(var(--primary))" }} />
                   </div>
-                  <h3 className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>
-                    Dekk & Sikkerhet
-                  </h3>
+                  <h3 className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>Dekk & Sikkerhet</h3>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-2.5">
-                  <EquipList
-                    items={[
-                      "Nye dekk bak",
-                      "M+S helårsdekk",
-                      "Høy lastindeks",
-                      "Aluminiumsfelger",
-                    ]}
-                  />
-                  <EquipList
-                    items={[
-                      "Ny sikkerhetswire",
-                      "Låsbar kulekobling",
-                      "Hjulstoppere inkludert",
-                      "Smurt og vedlikeholdt",
-                    ]}
-                  />
+                  <EquipList items={["Nye dekk bak", "M+S helårsdekk", "Høy lastindeks", "Aluminiumsfelger"]} />
+                  <EquipList items={["Ny sikkerhetswire", "Låsbar kulekobling", "Hjulstoppere inkludert", "Smurt og vedlikeholdt"]} />
                 </div>
               </div>
             </div>
           </Section>
 
-          {/* Tilstand */}
           <Section title="Tilstand">
             <div
               className="rounded-2xl border-l-4 p-7"
@@ -579,10 +511,7 @@ const TrailerDetail = () => {
             >
               <div className="flex items-start gap-4">
                 <Camera size={22} className="shrink-0 mt-0.5" style={{ color: "hsl(var(--accent))" }} />
-                <p
-                  className="text-base leading-relaxed"
-                  style={{ color: "hsl(var(--foreground))" }}
-                >
+                <p className="text-base leading-relaxed" style={{ color: "hsl(var(--foreground))" }}>
                   Hengeren fremstår som svært lite brukt og godt vedlikeholdt. Den bør sees og
                   prøves for riktig inntrykk. Dette er en L-utgave som få finnes, og kan ikke
                   sammenlignes med standardmodellen.
@@ -591,25 +520,12 @@ const TrailerDetail = () => {
             </div>
           </Section>
 
-          {/* Frakt & Overlevering */}
           <Section title="Frakt & Overlevering">
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                {
-                  icon: <Truck size={20} />,
-                  title: "Frakt i hele landet",
-                  text: "Kan ordnes etter avtale for kjøpere utenfor regionen.",
-                },
-                {
-                  icon: <Video size={20} />,
-                  title: "Videosamtale",
-                  text: "For langveis kjøpere kan vi vise hengeren digitalt.",
-                },
-                {
-                  icon: <FileText size={20} />,
-                  title: "Digital omregistrering",
-                  text: "Gjøres enkelt via vegvesen.no – vi hjelper deg.",
-                },
+                { icon: <Truck size={20} />, title: "Frakt i hele landet", text: "Kan ordnes etter avtale for kjøpere utenfor regionen." },
+                { icon: <Video size={20} />, title: "Videosamtale", text: "For langveis kjøpere kan vi vise hengeren digitalt." },
+                { icon: <FileText size={20} />, title: "Digital omregistrering", text: "Gjøres enkelt via vegvesen.no – vi hjelper deg." },
               ].map((item, i) => (
                 <div
                   key={i}
@@ -618,19 +534,12 @@ const TrailerDetail = () => {
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{
-                      background: "hsl(var(--secondary))",
-                      color: "hsl(var(--primary))",
-                    }}
+                    style={{ background: "hsl(var(--secondary))", color: "hsl(var(--primary))" }}
                   >
                     {item.icon}
                   </div>
-                  <p className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>
-                    {item.title}
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
-                    {item.text}
-                  </p>
+                  <p className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>{item.title}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>{item.text}</p>
                 </div>
               ))}
             </div>
@@ -639,21 +548,13 @@ const TrailerDetail = () => {
           {/* Bunn-CTA */}
           <div
             className="rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6"
-            style={{
-              background: "hsl(var(--primary))",
-            }}
+            style={{ background: "hsl(var(--primary))" }}
           >
             <div>
-              <p
-                className="text-xl font-extrabold mb-1"
-                style={{ color: "hsl(var(--primary-foreground))" }}
-              >
+              <p className="text-xl font-extrabold mb-1" style={{ color: "hsl(var(--primary-foreground))" }}>
                 Interessert? Ta kontakt i dag.
               </p>
-              <p
-                className="text-sm"
-                style={{ color: "hsl(var(--primary-foreground) / 0.75)" }}
-              >
+              <p className="text-sm" style={{ color: "hsl(var(--primary-foreground) / 0.75)" }}>
                 Besiktigelse etter avtale · Innbytte vurderes · Lokal selger
               </p>
             </div>
@@ -661,13 +562,9 @@ const TrailerDetail = () => {
               <a
                 href={`tel:${trailer.contactPhone}`}
                 className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
-                style={{
-                  background: "hsl(0 0% 100%)",
-                  color: "hsl(var(--primary))",
-                }}
+                style={{ background: "hsl(0 0% 100%)", color: "hsl(var(--primary))" }}
               >
-                <Phone size={16} />
-                Ring {trailer.sellerName}
+                <Phone size={16} />Ring {trailer.sellerName}
               </a>
               <a
                 href={`mailto:${trailer.contactEmail}`}
@@ -678,8 +575,7 @@ const TrailerDetail = () => {
                   borderColor: "hsl(var(--primary-foreground) / 0.45)",
                 }}
               >
-                <Mail size={16} />
-                Send e-post
+                <Mail size={16} />Send e-post
               </a>
             </div>
           </div>
