@@ -21,6 +21,7 @@ import bockmannImg from "@/assets/bockmann-big-master.jpg";
 import bockmannFront from "@/assets/bockmann-front.jpg";
 import bockmannRear from "@/assets/bockmann-rear.jpg";
 import bockmannInterior from "@/assets/bockmann-interior.jpg";
+import karlImg from "@/assets/karl-sorheim.jpg";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -286,6 +287,20 @@ const CTAButtons = ({ trailer }: { trailer: TrailerData }) => {
         <Mail size={18} />
         Send e-post
       </a>
+
+      {/* Karl – portrett og tittel */}
+      <div className="flex items-center gap-3 pt-1">
+        <img
+          src={karlImg}
+          alt="Karl – Daglig Leder, K. Sørheim AS"
+          className="w-14 h-14 rounded-full object-cover object-top border-2"
+          style={{ borderColor: "hsl(var(--border))" }}
+        />
+        <div>
+          <p className="text-sm font-semibold" style={{ color: "hsl(var(--foreground))" }}>Karl</p>
+          <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>Daglig Leder – K. Sørheim AS</p>
+        </div>
+      </div>
     </div>
   );
 };
@@ -396,10 +411,9 @@ const TrailerDetail = () => {
             {/* 3. Nøkkelspesifikasjoner (under galleri på desktop, etter info på mobil) */}
             <KeySpecsTable specs={trailer.keySpecs} />
 
-            {/* 4. Mobil: CTA + tillitssignaler (skjult på desktop) */}
+            {/* 4. Mobil: CTA (skjult på desktop) */}
             <div className="flex flex-col gap-4 lg:hidden">
               <CTAButtons trailer={trailer} />
-              <TrustSignals />
             </div>
           </div>
 
@@ -418,7 +432,6 @@ const TrailerDetail = () => {
               <div className="h-px" style={{ background: "hsl(var(--border))" }} />
 
               <CTAButtons trailer={trailer} />
-              <TrustSignals />
             </div>
           </aside>
         </div>
