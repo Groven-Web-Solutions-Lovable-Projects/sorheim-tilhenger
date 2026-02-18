@@ -1,6 +1,7 @@
-import { Weight, Package, Calendar, Camera, Shield, Zap, ChevronRight } from "lucide-react";
+import { Weight, Package, Calendar, Shield, Zap, Truck, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bockmannImg from "@/assets/bockmann-big-master.jpg";
+import atecImg from "@/assets/atec-starline.jpg";
 
 interface KeySpec {
   icon: React.ReactNode;
@@ -15,9 +16,11 @@ interface Trailer {
   title: string;
   year: number;
   price: string;
+  priceNote?: string;
   tagline: string;
   specs: KeySpec[];
   badge?: string;
+  clickable?: boolean;
 }
 
 const trailers: Trailer[] = [
@@ -30,29 +33,34 @@ const trailers: Trailer[] = [
     price: "kr 150 000",
     tagline: "Dyregodkjent – romslig L-modell med WCF Plus fjæring og topp komfort.",
     badge: "Hestetilhenger",
+    clickable: true,
     specs: [
       { icon: <Weight size={15} />, label: "Totalvekt", value: "2 400 kg" },
       { icon: <Package size={15} />, label: "Nyttelast", value: "1 233 kg" },
       { icon: <Calendar size={15} />, label: "Årsmodell", value: "2021" },
       { icon: <Shield size={15} />, label: "Dyregodkjent", value: "3 år" },
-      { icon: <Camera size={15} />, label: "Kamera", value: "Inkludert" },
+      { icon: <Star size={15} />, label: "Kamera", value: "Inkludert" },
       { icon: <Zap size={15} />, label: "Fjæring", value: "WCF Plus" },
     ],
   },
   {
     id: 2,
-    image: bockmannImg,
-    imageAlt: "Eksempel varetilhenger",
-    title: "Eksempel Varetilhenger 3500",
-    year: 2022,
-    price: "kr 95 000",
-    tagline: "Kraftig og pålitelig varetilhenger med høy nyttelast og god bunn.",
-    badge: "Varetilhenger",
+    image: atecImg,
+    imageAlt: "ATEC Starline hestehenger med vognplass 2016",
+    title: "ATEC Starline med vognplass",
+    year: 2016,
+    price: "kr 79 000",
+    priceNote: "Inkl. omregistreringsavgift – pris kan diskuteres",
+    tagline: "Sjelden og svært velholdt ATEC Starline med vognplass. Fremstår som ny, dyregodkjent for 3 nye år – høy komfort og stabil kjøring.",
+    badge: "Hestetilhenger",
+    clickable: false,
     specs: [
-      { icon: <Weight size={15} />, label: "Totalvekt", value: "3 500 kg" },
-      { icon: <Package size={15} />, label: "Nyttelast", value: "2 800 kg" },
-      { icon: <Calendar size={15} />, label: "Årsmodell", value: "2022" },
-      { icon: <Shield size={15} />, label: "Tilstand", value: "Meget god" },
+      { icon: <Shield size={15} />, label: "Dyregodkjent", value: "3 nye år" },
+      { icon: <Package size={15} />, label: "Nyttelast", value: "1 400 kg" },
+      { icon: <Calendar size={15} />, label: "Årsmodell", value: "2016" },
+      { icon: <Truck size={15} />, label: "Vognplass", value: "Hurtigkobling" },
+      { icon: <Weight size={15} />, label: "Hester", value: "2 plasser" },
+      { icon: <Zap size={15} />, label: "Lagring", value: "Innendørs" },
     ],
   },
 ];
@@ -111,6 +119,9 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
         >
           {trailer.price}
         </p>
+        {trailer.priceNote && (
+          <p className="text-xs text-muted-foreground mt-1">{trailer.priceNote}</p>
+        )}
       </div>
 
       {/* Tagline */}
@@ -133,27 +144,29 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
         ))}
       </div>
 
-      {/* CTA */}
-      <button
-        className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn border-2"
-        style={{
-          borderColor: "hsl(var(--primary))",
-          color: "hsl(var(--primary))",
-          backgroundColor: "transparent",
-        }}
-        onMouseEnter={e => {
-          e.currentTarget.style.backgroundColor = "hsl(var(--primary))";
-          e.currentTarget.style.color = "hsl(var(--primary-foreground))";
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.backgroundColor = "transparent";
-          e.currentTarget.style.color = "hsl(var(--primary))";
-        }}
-        onClick={() => navigate(`/tilhenger/${trailer.id}`)}
-      >
-        Se mer informasjon
-        <ChevronRight size={16} className="group-hover/btn:translate-x-0.5 transition-transform" />
-      </button>
+      {/* CTA – kun for klikkbare tilhengere */}
+      {trailer.clickable && (
+        <button
+          className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn border-2"
+          style={{
+            borderColor: "hsl(var(--primary))",
+            color: "hsl(var(--primary))",
+            backgroundColor: "transparent",
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = "hsl(var(--primary))";
+            e.currentTarget.style.color = "hsl(var(--primary-foreground))";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.color = "hsl(var(--primary))";
+          }}
+          onClick={() => navigate(`/tilhenger/${trailer.id}`)}
+        >
+          Se mer informasjon
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover/btn:translate-x-0.5 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      )}
     </div>
   </article>
   );
