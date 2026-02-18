@@ -144,8 +144,8 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
         ))}
       </div>
 
-      {/* CTA – kun for klikkbare tilhengere */}
-      {trailer.clickable && (
+      {/* CTA */}
+      {trailer.clickable ? (
         <button
           className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn border-2"
           style={{
@@ -166,6 +166,23 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
           Se mer informasjon
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover/btn:translate-x-0.5 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
         </button>
+      ) : (
+        <div className="mt-auto space-y-2">
+          <div
+            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold border-2 cursor-not-allowed opacity-40 select-none"
+            style={{
+              borderColor: "hsl(var(--border))",
+              color: "hsl(var(--muted-foreground))",
+              backgroundColor: "hsl(var(--muted))",
+            }}
+          >
+            Se mer informasjon
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </div>
+          <p className="text-center text-xs text-muted-foreground">
+            Detaljside ikke inkludert i denne demoen
+          </p>
+        </div>
       )}
     </div>
   </article>
