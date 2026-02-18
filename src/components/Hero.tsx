@@ -81,7 +81,7 @@ const Hero = () => {
             style={{ borderColor: "hsl(0 0% 100% / 0.3)" }}
           />
           <div>
-            <p className="text-sm font-semibold" style={{ color: "hsl(0 0% 100%)" }}>Karl</p>
+            <p className="text-sm font-semibold" style={{ color: "hsl(0 0% 100%)" }}>Karl Sørheim</p>
             <p className="text-xs" style={{ color: "hsl(0 0% 75%)" }}>Daglig Leder – K. Sørheim AS</p>
           </div>
         </div>
