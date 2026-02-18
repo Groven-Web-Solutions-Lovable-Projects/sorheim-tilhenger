@@ -419,14 +419,6 @@ const TrailerDetail = () => {
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-12 sm:pb-16">
           <div className="max-w-6xl mx-auto px-6 sm:px-10">
 
-            {/* Kategori */}
-            <p
-              className="text-xs font-semibold uppercase tracking-[0.2em] mb-4"
-              style={{ color: "hsl(196 80% 72%)" }}
-            >
-              {trailer.badge}
-            </p>
-
             {/* Tittel */}
             <h1
               className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight mb-5"
@@ -453,7 +445,7 @@ const TrailerDetail = () => {
                 boxShadow: "0 4px 24px hsl(215 50% 6% / 0.4)",
               }}
             >
-              Se hele annonsen
+              Se mer informasjon
               <ArrowDown size={15} />
             </button>
           </div>
