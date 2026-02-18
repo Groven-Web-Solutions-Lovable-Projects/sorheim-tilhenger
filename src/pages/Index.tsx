@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import TrailerListings from "@/components/TrailerListings";
 import Innbytte from "@/components/Innbytte";
 import Testimonial from "@/components/Testimonial";
+import Kontakt from "@/components/Kontakt";
 
 const Index = () => {
   return (
@@ -10,6 +11,7 @@ const Index = () => {
       <TrailerListings />
       <Innbytte />
       <Testimonial />
+      <Kontakt />
     </main>
   );
 };
