@@ -147,19 +147,16 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
       {/* CTA */}
       {trailer.clickable ? (
         <button
-          className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn border-2"
+          className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn"
           style={{
-            borderColor: "hsl(var(--primary))",
-            color: "hsl(var(--primary))",
-            backgroundColor: "transparent",
+            backgroundColor: "hsl(var(--primary))",
+            color: "hsl(var(--primary-foreground))",
           }}
           onMouseEnter={e => {
-            e.currentTarget.style.backgroundColor = "hsl(var(--primary))";
-            e.currentTarget.style.color = "hsl(var(--primary-foreground))";
+            e.currentTarget.style.backgroundColor = "hsl(212 72% 30%)";
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = "hsl(var(--primary))";
+            e.currentTarget.style.backgroundColor = "hsl(var(--primary))";
           }}
           onClick={() => navigate(`/tilhenger/${trailer.id}`)}
         >
