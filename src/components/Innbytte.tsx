@@ -20,7 +20,7 @@ const steps = [
 
 const Innbytte = () => {
   return (
-    <section className="py-24 px-6 sm:px-10" style={{ backgroundColor: "hsl(var(--background))" }}>
+    <section id="innbytte" className="py-24 px-6 sm:px-10" style={{ backgroundColor: "hsl(var(--background))" }}>
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
