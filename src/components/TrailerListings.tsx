@@ -1,4 +1,5 @@
 import { Weight, Package, Calendar, Camera, Shield, Zap, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import bockmannImg from "@/assets/bockmann-big-master.jpg";
 
 interface KeySpec {
@@ -56,7 +57,9 @@ const trailers: Trailer[] = [
   },
 ];
 
-const TrailerCard = ({ trailer }: { trailer: Trailer }) => (
+const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
+  const navigate = useNavigate();
+  return (
   <article className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-border">
     {/* Bilde */}
     <div className="relative overflow-hidden aspect-[16/10] bg-muted">
@@ -121,13 +124,15 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => (
         }}
         onMouseEnter={e => (e.currentTarget.style.backgroundColor = "hsl(212 72% 30%)")}
         onMouseLeave={e => (e.currentTarget.style.backgroundColor = "hsl(var(--primary))")}
+        onClick={() => navigate(`/tilhenger/${trailer.id}`)}
       >
         Les mer om denne tilhengeren
         <ChevronRight size={16} className="group-hover/btn:translate-x-0.5 transition-transform" />
       </button>
     </div>
   </article>
-);
+  );
+};
 
 const TrailerListings = () => (
   <section id="tilhengere" className="py-20 px-6 sm:px-10 bg-white">
