@@ -24,7 +24,7 @@ const Hero = () => {
       <div className="absolute inset-0 hero-overlay" />
 
       {/* Innhold */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-10 py-24 sm:py-32">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-10 pt-44 sm:pt-52 pb-24 sm:pb-32">
         {/* H1 */}
         <h1
           className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6 max-w-3xl"

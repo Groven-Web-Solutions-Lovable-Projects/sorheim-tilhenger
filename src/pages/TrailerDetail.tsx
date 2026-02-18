@@ -24,8 +24,7 @@ import bockmannFront from "@/assets/bockmann-front.jpg";
 import bockmannRear from "@/assets/bockmann-rear.jpg";
 import bockmannInterior from "@/assets/bockmann-interior.jpg";
 import karlImg from "@/assets/karl-sorheim.jpg";
-import trailerHeroImg from "@/assets/trailer-hero.jpg";
-import trailerHeroMobileImg from "@/assets/trailer-hero-mobile.jpg";
+import bockmannHesterHeroImg from "@/assets/bockmann-hester-hero.jpg";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -386,17 +385,13 @@ const TrailerDetail = () => {
       ══════════════════════════════════════════════ */}
       <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden">
         {/* Bakgrunnsbilde – Ken Burns sakte zoom */}
-        <picture className="absolute inset-0 w-full h-full">
-          <source media="(max-width: 639px)" srcSet={trailerHeroMobileImg} />
-          <source media="(min-width: 640px)" srcSet={trailerHeroImg} />
-          <img
-            src={trailerHeroImg}
-            alt={trailer.title}
-            className="w-full h-full object-cover object-center"
-            style={{ animation: "hero-zoom 12s ease-out forwards" }}
-            loading="eager"
-          />
-        </picture>
+        <img
+          src={bockmannHesterHeroImg}
+          alt={trailer.title}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ animation: "hero-zoom 12s ease-out forwards" }}
+          loading="eager"
+        />
 
         {/* Gradient overlay – mørkere mot bunnen */}
         <div
