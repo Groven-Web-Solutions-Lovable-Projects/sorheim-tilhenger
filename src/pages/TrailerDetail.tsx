@@ -69,7 +69,7 @@ const trailerData: Record<string, TrailerData> = {
     ],
     contactPhone: "+4700000000",
     contactEmail: "karl@sorheim.no",
-    sellerName: "Karl",
+    sellerName: "Karl Sørheim",
   },
   "2": {
     id: 2,
@@ -88,7 +88,7 @@ const trailerData: Record<string, TrailerData> = {
     ],
     contactPhone: "+4700000000",
     contactEmail: "karl@sorheim.no",
-    sellerName: "Karl",
+    sellerName: "Karl Sørheim",
   },
 };
 
@@ -300,7 +300,7 @@ const CTAButtons = ({ trailer }: { trailer: TrailerData }) => {
           style={{ border: "2px solid hsl(var(--border))" }}
         />
         <div className="flex flex-col gap-0.5">
-          <p className="text-base font-bold" style={{ color: "hsl(var(--foreground))" }}>Karl</p>
+          <p className="text-base font-bold" style={{ color: "hsl(var(--foreground))" }}>Karl Sørheim</p>
           <p className="text-sm font-medium" style={{ color: "hsl(var(--primary))" }}>Daglig Leder</p>
           <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>K. Sørheim AS</p>
         </div>
