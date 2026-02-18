@@ -124,8 +124,7 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => {
         {trailer.specs.map((spec, i) => (
           <div
             key={i}
-            className="flex flex-col items-center text-center gap-1.5 rounded-xl px-2 py-3"
-            style={{ backgroundColor: "hsl(var(--secondary))" }}
+            className="flex flex-col items-center text-center gap-1.5 rounded-xl px-2 py-3 border border-border bg-white"
           >
             <span style={{ color: "hsl(var(--accent))" }}>{spec.icon}</span>
             <span className="text-sm font-bold text-foreground leading-tight">{spec.value}</span>
