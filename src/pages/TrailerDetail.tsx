@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -67,8 +68,8 @@ const trailerData: Record<string, TrailerData> = {
       { label: "Vegger", value: "Glassfiber" },
       { label: "Dyregodkj.", value: "3 nye år" },
     ],
-    contactPhone: "+4700000000",
-    contactEmail: "karl@sorheim.no",
+    contactPhone: "+4797331920",
+    contactEmail: "karlswarop@hotmail.com",
     sellerName: "Karl Sørheim",
   },
   "2": {
@@ -378,6 +379,7 @@ const TrailerDetail = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <Navbar />
 
       {/* ══════════════════════════════════════════════
           HERO – full-width cinematic
@@ -629,38 +631,57 @@ const TrailerDetail = () => {
             </div>
           </Section>
 
-          {/* Bunn-CTA */}
-          <div
-            className="rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6"
-            style={{ background: "hsl(var(--primary))" }}
-          >
-            <div>
-              <p className="text-xl font-extrabold mb-1" style={{ color: "hsl(var(--primary-foreground))" }}>
-                Interessert? Ta kontakt i dag.
-              </p>
-              <p className="text-sm" style={{ color: "hsl(var(--primary-foreground) / 0.75)" }}>
-                Besiktigelse etter avtale · Innbytte vurderes · Lokal selger
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-              <a
-                href={`tel:${trailer.contactPhone}`}
-                className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
-                style={{ background: "hsl(0 0% 100%)", color: "hsl(var(--primary))" }}
-              >
-                <Phone size={16} />Ring {trailer.sellerName}
-              </a>
-              <a
-                href={`mailto:${trailer.contactEmail}`}
-                className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border transition-all duration-200 hover:-translate-y-0.5"
-                style={{
-                  background: "transparent",
-                  color: "hsl(var(--primary-foreground))",
-                  borderColor: "hsl(var(--primary-foreground) / 0.45)",
-                }}
-              >
-                <Mail size={16} />Send e-post
-              </a>
+          {/* Bunn-CTA – personlig med Karl */}
+          <div className="rounded-2xl overflow-hidden border border-border">
+            <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] items-stretch">
+
+              {/* Karl – bilde */}
+              <div className="sm:w-56 h-56 sm:h-auto shrink-0">
+                <img
+                  src={karlImg}
+                  alt="Karl Sørheim – Daglig leder, K. Sørheim AS"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+
+              {/* Innhold */}
+              <div className="flex flex-col justify-center px-8 py-9 bg-white gap-5">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Har du spørsmål?</p>
+                  <p className="text-2xl font-extrabold text-foreground leading-snug">
+                    Snakk direkte med Karl
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed max-w-md">
+                    Han tar seg god tid, svarer ærlig og hjelper deg å ta riktig valg – uten press.
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={`tel:${trailer.contactPhone}`}
+                    className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold transition-all duration-200"
+                    style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = "hsl(212 72% 30%)")}
+                    onMouseLeave={e => (e.currentTarget.style.backgroundColor = "hsl(var(--primary))")}
+                  >
+                    <Phone size={16} />
+                    Ring Karl – 973 31 920
+                  </a>
+                  <a
+                    href={`mailto:${trailer.contactEmail}`}
+                    className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold border border-border transition-all duration-200 hover:border-primary text-foreground"
+                  >
+                    <Mail size={16} />
+                    Send e-post
+                  </a>
+                </div>
+
+                <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-xs text-muted-foreground">
+                  <span>✓ Besiktigelse etter avtale</span>
+                  <span>✓ Innbytte vurderes</span>
+                  <span>✓ Lokal selger – Vestlandet</span>
+                </div>
+              </div>
             </div>
           </div>
 
