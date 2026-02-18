@@ -184,23 +184,22 @@ const Gallery = ({ images, title }: { images: string[]; title: string }) => {
 const KeySpecsTable = ({ specs }: { specs: SpecRow[] }) => (
   <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "hsl(var(--border))" }}>
     <div
-      className="px-5 py-3 text-xs font-bold uppercase tracking-widest border-b"
-      style={{ background: "hsl(var(--secondary))", color: "hsl(var(--primary))", borderColor: "hsl(var(--border))" }}
+      className="px-5 py-3.5 text-xs font-bold uppercase tracking-widest border-b"
+      style={{ background: "hsl(0 0% 100%)", color: "hsl(var(--muted-foreground))", borderColor: "hsl(var(--border))" }}
     >
       Nøkkelspesifikasjoner
     </div>
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 bg-white">
       {specs.map((spec, i) => (
         <div
           key={i}
-          className="flex flex-col px-5 py-3"
+          className="flex flex-col px-5 py-3.5"
           style={{
-            background: Math.floor(i / 2) % 2 === 0 ? "hsl(0 0% 100%)" : "hsl(var(--secondary))",
             borderBottom: i < specs.length - 2 ? "1px solid hsl(var(--border))" : undefined,
             borderRight: i % 2 === 0 ? "1px solid hsl(var(--border))" : undefined,
           }}
         >
-          <span className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
+          <span className="text-xs font-medium" style={{ color: "hsl(var(--muted-foreground))" }}>
             {spec.label}
           </span>
           <span className="text-sm font-semibold mt-0.5" style={{ color: "hsl(var(--foreground))" }}>
