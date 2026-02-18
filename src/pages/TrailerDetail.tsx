@@ -184,8 +184,8 @@ const Gallery = ({ images, title }: { images: string[]; title: string }) => {
 const KeySpecsTable = ({ specs }: { specs: SpecRow[] }) => (
   <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "hsl(var(--border))" }}>
     <div
-      className="px-5 py-3 text-xs font-bold uppercase tracking-widest"
-      style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+      className="px-5 py-3 text-xs font-bold uppercase tracking-widest border-b"
+      style={{ background: "hsl(var(--secondary))", color: "hsl(var(--primary))", borderColor: "hsl(var(--border))" }}
     >
       Nøkkelspesifikasjoner
     </div>
