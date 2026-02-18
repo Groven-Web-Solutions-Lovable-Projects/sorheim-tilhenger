@@ -8,7 +8,12 @@ const navLinks = [
 ];
 
 const scrollTo = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.location.href = `/#${id}`;
+  }
 };
 
 const Navbar = () => {
@@ -43,7 +48,7 @@ const Navbar = () => {
 
           {/* CTA */}
           <a
-            href="#kontakt"
+          href="/#kontakt"
             onClick={(e) => {
               e.preventDefault();
               scrollTo("kontakt");
