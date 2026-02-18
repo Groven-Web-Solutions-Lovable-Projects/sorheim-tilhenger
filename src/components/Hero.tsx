@@ -1,4 +1,5 @@
 import heroImg from "@/assets/hero-bg.jpg";
+import karlImg from "@/assets/karl-sorheim.jpg";
 import { Phone, ChevronRight } from "lucide-react";
 
 const Hero = () => {
@@ -71,14 +72,27 @@ const Hero = () => {
           </a>
         </div>
 
+        {/* Karl – bilde og tittel */}
+        <div className="mt-10 flex items-center gap-4">
+          <img
+            src={karlImg}
+            alt="Karl – Daglig Leder, K. Sørheim AS"
+            className="w-16 h-16 rounded-full object-cover object-top border-2"
+            style={{ borderColor: "hsl(0 0% 100% / 0.3)" }}
+          />
+          <div>
+            <p className="text-sm font-semibold" style={{ color: "hsl(0 0% 100%)" }}>Karl</p>
+            <p className="text-xs" style={{ color: "hsl(0 0% 75%)" }}>Daglig Leder – K. Sørheim AS</p>
+          </div>
+        </div>
+
         {/* Tillitssignaler */}
         <div
-          className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium"
+          className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium"
           style={{ color: "hsl(0 0% 75%)" }}
         >
           <span>✓ Personlig rådgivning</span>
           <span>✓ Innbytte etter avtale</span>
-          <span>✓ Trygg handel</span>
         </div>
       </div>
     </section>
