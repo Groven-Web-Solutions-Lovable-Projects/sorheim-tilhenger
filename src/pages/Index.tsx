@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrailerListings from "@/components/TrailerListings";
 import Innbytte from "@/components/Innbytte";
@@ -7,6 +8,7 @@ import Kontakt from "@/components/Kontakt";
 const Index = () => {
   return (
     <main>
+      <Navbar />
       <Hero />
       <TrailerListings />
       <Innbytte />
