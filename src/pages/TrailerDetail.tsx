@@ -24,6 +24,7 @@ import bockmannRear from "@/assets/bockmann-rear.jpg";
 import bockmannInterior from "@/assets/bockmann-interior.jpg";
 import karlImg from "@/assets/karl-sorheim.jpg";
 import trailerHeroImg from "@/assets/trailer-hero.jpg";
+import trailerHeroMobileImg from "@/assets/trailer-hero-mobile.jpg";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -382,13 +383,17 @@ const TrailerDetail = () => {
           HERO – full-width cinematic
       ══════════════════════════════════════════════ */}
       <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden">
-        {/* Bakgrunnsbilde */}
-        <img
-          src={trailerHeroImg}
-          alt={trailer.title}
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          loading="eager"
-        />
+        {/* Bakgrunnsbilde – portrait på mobil, landscape på desktop */}
+        <picture className="absolute inset-0 w-full h-full">
+          <source media="(max-width: 639px)" srcSet={trailerHeroMobileImg} />
+          <source media="(min-width: 640px)" srcSet={trailerHeroImg} />
+          <img
+            src={trailerHeroImg}
+            alt={trailer.title}
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </picture>
 
         {/* Gradient overlay – mørkere mot bunnen */}
         <div
