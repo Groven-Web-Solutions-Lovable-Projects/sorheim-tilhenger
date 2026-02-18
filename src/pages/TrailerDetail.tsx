@@ -16,12 +16,16 @@ import {
   Video,
   FileText,
   CheckCircle2,
+  ArrowDown,
+  Calendar,
+  Weight,
 } from "lucide-react";
 import bockmannImg from "@/assets/bockmann-big-master.jpg";
 import bockmannFront from "@/assets/bockmann-front.jpg";
 import bockmannRear from "@/assets/bockmann-rear.jpg";
 import bockmannInterior from "@/assets/bockmann-interior.jpg";
 import karlImg from "@/assets/karl-sorheim.jpg";
+import trailerHeroImg from "@/assets/trailer-hero.jpg";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -376,23 +380,125 @@ const TrailerDetail = () => {
   return (
     <main className="min-h-screen bg-background">
 
-      {/* Breadcrumb */}
-      <div className="border-b bg-card">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center gap-2 text-sm">
-          <Link
-            to="/#tilhengere"
-            className="flex items-center gap-1.5 font-medium transition-colors"
-            style={{ color: "hsl(var(--primary))" }}
-          >
-            <ChevronLeft size={15} />
-            Alle tilhengere
-          </Link>
-          <span className="text-muted-foreground">/</span>
-          <span className="text-muted-foreground truncate">{trailer.title}</span>
-        </div>
-      </div>
+      {/* ══════════════════════════════════════════════
+          HERO – full-width cinematic
+      ══════════════════════════════════════════════ */}
+      <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden">
+        {/* Bakgrunnsbilde */}
+        <img
+          src={trailerHeroImg}
+          alt={trailer.title}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+        />
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 py-12 sm:py-16 flex flex-col gap-20">
+        {/* Gradient overlay – mørkere mot bunnen */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, hsl(215 50% 6% / 0.18) 0%, hsl(215 50% 6% / 0.55) 55%, hsl(215 50% 6% / 0.88) 100%)",
+          }}
+        />
+
+        {/* Breadcrumb – øverst */}
+        <div className="absolute top-0 left-0 right-0 z-10">
+          <div className="max-w-6xl mx-auto px-6 sm:px-10 pt-6 flex items-center gap-2 text-sm">
+            <Link
+              to="/#tilhengere"
+              className="flex items-center gap-1.5 font-medium transition-opacity hover:opacity-75"
+              style={{ color: "hsl(0 0% 100% / 0.85)" }}
+            >
+              <ChevronLeft size={15} />
+              Alle tilhengere
+            </Link>
+            <span style={{ color: "hsl(0 0% 100% / 0.4)" }}>/</span>
+            <span className="truncate" style={{ color: "hsl(0 0% 100% / 0.6)" }}>{trailer.title}</span>
+          </div>
+        </div>
+
+        {/* Innhold – sentrert mot bunnen */}
+        <div className="absolute bottom-0 left-0 right-0 z-10 pb-10 sm:pb-14">
+          <div className="max-w-6xl mx-auto px-6 sm:px-10">
+
+            {/* Badge */}
+            <span
+              className="inline-block mb-4 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
+              style={{
+                background: "hsl(var(--accent) / 0.25)",
+                color: "hsl(196 80% 78%)",
+                border: "1px solid hsl(var(--accent) / 0.45)",
+                backdropFilter: "blur(6px)",
+              }}
+            >
+              {trailer.badge}
+            </span>
+
+            {/* Tittel */}
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-3"
+              style={{ color: "hsl(0 0% 100%)", textShadow: "0 2px 24px hsl(215 50% 6% / 0.5)" }}
+            >
+              {trailer.title}
+            </h1>
+
+            {/* Nøkkelinfo-pill-rad */}
+            <div className="flex flex-wrap items-center gap-3 mb-7">
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
+                style={{
+                  background: "hsl(0 0% 0% / 0.38)",
+                  color: "hsl(0 0% 95%)",
+                  backdropFilter: "blur(8px)",
+                  border: "1px solid hsl(0 0% 100% / 0.15)",
+                }}
+              >
+                <Calendar size={14} style={{ color: "hsl(196 80% 72%)" }} />
+                {trailer.subtitle}
+              </div>
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
+                style={{
+                  background: "hsl(0 0% 0% / 0.38)",
+                  color: "hsl(0 0% 95%)",
+                  backdropFilter: "blur(8px)",
+                  border: "1px solid hsl(0 0% 100% / 0.15)",
+                }}
+              >
+                <Weight size={14} style={{ color: "hsl(196 80% 72%)" }} />
+                {trailer.keySpecs.find(s => s.label === "Totalvekt")?.value ?? "–"} totalvekt
+              </div>
+              {/* Pris */}
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold"
+                style={{
+                  background: "hsl(var(--primary))",
+                  color: "hsl(var(--primary-foreground))",
+                  boxShadow: "0 2px 16px hsl(var(--primary) / 0.45)",
+                }}
+              >
+                {trailer.price}
+              </div>
+            </div>
+
+            {/* Scroll-ned knapp */}
+            <button
+              onClick={() => document.getElementById("tilhenger-detaljer")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+              style={{
+                background: "hsl(0 0% 100%)",
+                color: "hsl(var(--primary))",
+                boxShadow: "0 4px 20px hsl(215 50% 6% / 0.35)",
+              }}
+            >
+              Se mer informasjon
+              <ArrowDown size={16} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="tilhenger-detaljer" className="max-w-6xl mx-auto px-6 sm:px-10 py-12 sm:py-16 flex flex-col gap-20">
 
         {/* ══════════════════════════════════════════════
             TOPPSEKSJON
