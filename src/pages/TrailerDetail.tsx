@@ -18,6 +18,9 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import bockmannImg from "@/assets/bockmann-big-master.jpg";
+import bockmannFront from "@/assets/bockmann-front.jpg";
+import bockmannRear from "@/assets/bockmann-rear.jpg";
+import bockmannInterior from "@/assets/bockmann-interior.jpg";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
