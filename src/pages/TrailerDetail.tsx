@@ -289,16 +289,17 @@ const CTAButtons = ({ trailer }: { trailer: TrailerData }) => {
       </a>
 
       {/* Karl – portrett og tittel */}
-      <div className="flex items-center gap-3 pt-1">
+      <div className="flex items-center gap-4 pt-2 rounded-xl p-3" style={{ background: "hsl(var(--secondary))" }}>
         <img
           src={karlImg}
           alt="Karl – Daglig Leder, K. Sørheim AS"
-          className="w-14 h-14 rounded-full object-cover object-top border-2"
-          style={{ borderColor: "hsl(var(--border))" }}
+          className="w-20 h-20 rounded-xl object-cover object-top shrink-0"
+          style={{ border: "2px solid hsl(var(--border))" }}
         />
-        <div>
-          <p className="text-sm font-semibold" style={{ color: "hsl(var(--foreground))" }}>Karl</p>
-          <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>Daglig Leder – K. Sørheim AS</p>
+        <div className="flex flex-col gap-0.5">
+          <p className="text-base font-bold" style={{ color: "hsl(var(--foreground))" }}>Karl</p>
+          <p className="text-sm font-medium" style={{ color: "hsl(var(--primary))" }}>Daglig Leder</p>
+          <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>K. Sørheim AS</p>
         </div>
       </div>
     </div>
