@@ -41,11 +41,11 @@ const Hero = () => {
 
         {/* CTA-knapper */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <a href="#tilhengere" className="btn-primary-hero">
+          <a href="#tilhengere" className="btn-primary-hero justify-center sm:justify-start">
             Utforsk tilhengere
             <ChevronRight size={18} />
           </a>
-          <a href="tel:+4700000000" className="btn-secondary-hero">
+          <a href="tel:+4700000000" className="btn-secondary-hero justify-center sm:justify-start">
             <Phone size={18} />
             Snakk med Karl
           </a>
