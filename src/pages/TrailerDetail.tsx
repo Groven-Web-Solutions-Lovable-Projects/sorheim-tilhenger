@@ -192,22 +192,16 @@ const KeySpecsTable = ({ specs }: { specs: SpecRow[] }) => (
     >
       Nøkkelspesifikasjoner
     </div>
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 bg-white">
       {specs.map((spec, i) => (
         <div
           key={i}
-          className="flex flex-col px-5 py-4 gap-1 relative overflow-hidden"
+          className="flex flex-col px-5 py-4 gap-0.5"
           style={{
-            background: "hsl(0 0% 100%)",
             borderBottom: i < specs.length - 2 ? "1px solid hsl(var(--border))" : undefined,
             borderRight: i % 2 === 0 ? "1px solid hsl(var(--border))" : undefined,
           }}
         >
-          {/* Subtle accent stripe on top */}
-          <div
-            className="absolute top-0 left-0 right-0 h-0.5"
-            style={{ background: i % 3 === 0 ? "hsl(var(--primary) / 0.35)" : i % 3 === 1 ? "hsl(var(--accent) / 0.45)" : "hsl(var(--primary) / 0.18)" }}
-          />
           <span className="text-xs font-medium" style={{ color: "hsl(var(--muted-foreground))" }}>
             {spec.label}
           </span>
