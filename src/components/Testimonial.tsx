@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 
 const Testimonial = () => {
   return (
-    <section className="py-24 px-6 sm:px-10 bg-white">
+    <section id="kundeomtaler" className="py-24 px-6 sm:px-10 bg-white">
       <div className="max-w-6xl mx-auto">
 
         {/* Label */}
