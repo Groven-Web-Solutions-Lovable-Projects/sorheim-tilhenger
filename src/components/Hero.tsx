@@ -2,6 +2,9 @@ import heroImg from "@/assets/hero-bg.jpg";
 import karlImg from "@/assets/karl-sorheim.jpg";
 import { Phone, ChevronRight } from "lucide-react";
 
+const scrollTo = (id: string) =>
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
 const Hero = () => {
   return (
     <section
@@ -52,14 +55,20 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-3"
           style={{ animation: "hero-fade-up 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.65s both" }}
         >
-          <a href="#tilhengere" className="btn-primary-hero justify-center sm:justify-start">
+          <button
+            onClick={() => scrollTo("tilhengere")}
+            className="btn-primary-hero justify-center sm:justify-start"
+          >
             Utforsk tilhengere
             <ChevronRight size={18} />
-          </a>
-          <a href="tel:+4797331920" className="btn-secondary-hero justify-center sm:justify-start">
+          </button>
+          <button
+            onClick={() => scrollTo("kontakt")}
+            className="btn-secondary-hero justify-center sm:justify-start"
+          >
             <Phone size={18} />
             Snakk med Karl
-          </a>
+          </button>
         </div>
 
         {/* Karl – bilde og tittel */}
