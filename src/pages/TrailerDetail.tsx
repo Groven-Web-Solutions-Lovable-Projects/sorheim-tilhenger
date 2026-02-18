@@ -18,6 +18,9 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import bockmannImg from "@/assets/bockmann-big-master.jpg";
+import bockmannFront from "@/assets/bockmann-front.jpg";
+import bockmannRear from "@/assets/bockmann-rear.jpg";
+import bockmannInterior from "@/assets/bockmann-interior.jpg";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -43,7 +46,7 @@ interface TrailerData {
 const trailerData: Record<string, TrailerData> = {
   "1": {
     id: 1,
-    images: [bockmannImg, bockmannImg, bockmannImg, bockmannImg],
+    images: [bockmannImg, bockmannFront, bockmannRear, bockmannInterior],
     title: "BÖCKMANN Big Master L",
     subtitle: "2021 · L-utgave",
     price: "kr 150 000",
