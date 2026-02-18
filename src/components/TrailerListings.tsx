@@ -26,7 +26,7 @@ const trailers: Trailer[] = [
     imageAlt: "BÖCKMANN Big Master L hestetilhenger 2021",
     title: "BÖCKMANN Big Master L",
     year: 2021,
-    price: "Ta kontakt for pris",
+    price: "kr 150 000",
     tagline: "Dyregodkjent – romslig L-modell med WCF Plus fjæring og topp komfort.",
     badge: "Hestetilhenger",
     specs: [
@@ -44,7 +44,7 @@ const trailers: Trailer[] = [
     imageAlt: "Eksempel varetilhenger",
     title: "Eksempel Varetilhenger 3500",
     year: 2022,
-    price: "Ta kontakt for pris",
+    price: "kr 95 000",
     tagline: "Kraftig og pålitelig varetilhenger med høy nyttelast og god bunn.",
     badge: "Varetilhenger",
     specs: [
@@ -59,7 +59,7 @@ const trailers: Trailer[] = [
 const TrailerCard = ({ trailer }: { trailer: Trailer }) => (
   <article className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-border">
     {/* Bilde */}
-    <div className="relative overflow-hidden aspect-[4/3] bg-muted">
+    <div className="relative overflow-hidden aspect-[16/10] bg-muted">
       <img
         src={trailer.image}
         alt={trailer.imageAlt}
@@ -69,7 +69,7 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => (
       {/* Badge */}
       {trailer.badge && (
         <span
-          className="absolute top-4 left-4 text-xs font-semibold px-3 py-1 rounded-full"
+          className="absolute top-4 left-4 text-xs font-semibold px-3 py-1.5 rounded-full"
           style={{
             backgroundColor: "hsl(var(--primary))",
             color: "hsl(var(--primary-foreground))",
@@ -78,54 +78,43 @@ const TrailerCard = ({ trailer }: { trailer: Trailer }) => (
           {trailer.badge}
         </span>
       )}
-      {/* Årsmodell-chip */}
-      <span
-        className="absolute top-4 right-4 text-xs font-semibold px-3 py-1 rounded-full"
-        style={{
-          backgroundColor: "hsl(0 0% 100% / 0.92)",
-          color: "hsl(var(--foreground))",
-          backdropFilter: "blur(4px)",
-        }}
-      >
-        {trailer.year}
-      </span>
     </div>
 
     {/* Innhold */}
-    <div className="flex flex-col flex-1 p-6 gap-4">
-      {/* Tittel + Pris */}
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-lg font-bold leading-snug text-foreground">{trailer.title}</h3>
-        <div
-          className="shrink-0 text-right text-base font-bold whitespace-nowrap"
-          style={{ color: "hsl(var(--primary))" }}
-        >
-          {trailer.price}
-        </div>
+    <div className="flex flex-col flex-1 p-7 gap-5">
+      {/* Tittel */}
+      <h3 className="text-xl font-bold leading-snug text-foreground">{trailer.title}</h3>
+
+      {/* Pris – alltid fremtredende */}
+      <div
+        className="text-2xl font-extrabold"
+        style={{ color: "hsl(var(--primary))" }}
+      >
+        {trailer.price}
       </div>
 
       {/* Tagline */}
-      <p className="text-sm text-muted-foreground leading-relaxed -mt-1">{trailer.tagline}</p>
+      <p className="text-sm text-muted-foreground leading-relaxed">{trailer.tagline}</p>
 
       {/* Skillelinje */}
       <div className="border-t border-border" />
 
-      {/* Nøkkelpunkter */}
-      <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+      {/* Nøkkelpunkter – én per rad for å unngå overlapp */}
+      <ul className="flex flex-col gap-3">
         {trailer.specs.map((spec, i) => (
-          <li key={i} className="flex items-center gap-2 text-sm">
+          <li key={i} className="flex items-center gap-3 text-sm">
             <span style={{ color: "hsl(var(--accent))" }} className="shrink-0">
               {spec.icon}
             </span>
-            <span className="text-muted-foreground">{spec.label}:</span>
-            <span className="font-semibold text-foreground ml-auto">{spec.value}</span>
+            <span className="text-muted-foreground flex-1">{spec.label}</span>
+            <span className="font-semibold text-foreground">{spec.value}</span>
           </li>
         ))}
       </ul>
 
       {/* CTA */}
       <button
-        className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all duration-200 group/btn"
+        className="mt-auto w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 group/btn"
         style={{
           backgroundColor: "hsl(var(--primary))",
           color: "hsl(var(--primary-foreground))",
@@ -163,7 +152,7 @@ const TrailerListings = () => (
       </div>
 
       {/* Kortgrid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {trailers.map(t => (
           <TrailerCard key={t.id} trailer={t} />
         ))}
