@@ -384,7 +384,7 @@ const TrailerDetail = () => {
       {/* ══════════════════════════════════════════════
           HERO – full-width cinematic
       ══════════════════════════════════════════════ */}
-      <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden pt-16">
+      <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden">
         {/* Bakgrunnsbilde – Ken Burns sakte zoom */}
         <picture className="absolute inset-0 w-full h-full">
           <source media="(max-width: 639px)" srcSet={bockmannHesterHeroMobileImg} />
@@ -408,7 +408,7 @@ const TrailerDetail = () => {
         />
 
         {/* Breadcrumb – øverst */}
-        <div className="absolute top-0 left-0 right-0 z-10" style={{ animation: "hero-fade-up 0.8s ease-out both" }}>
+        <div className="absolute top-16 left-0 right-0 z-10" style={{ animation: "hero-fade-up 0.8s ease-out both" }}>
           <div className="max-w-6xl mx-auto px-6 sm:px-10 pt-6 flex items-center gap-2 text-sm">
             <Link
               to="/#tilhengere"
