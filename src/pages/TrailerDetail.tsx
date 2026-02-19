@@ -384,7 +384,7 @@ const TrailerDetail = () => {
       {/* ══════════════════════════════════════════════
           HERO – full-width cinematic
       ══════════════════════════════════════════════ */}
-      <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden">
+      <section className="relative h-[92vh] min-h-[560px] max-h-[900px] overflow-hidden pt-16">
         {/* Bakgrunnsbilde – Ken Burns sakte zoom */}
         <picture className="absolute inset-0 w-full h-full">
           <source media="(max-width: 639px)" srcSet={bockmannHesterHeroMobileImg} />
@@ -488,7 +488,7 @@ const TrailerDetail = () => {
           </div>
 
           {/* ── HØYRE: Sticky boks (kun desktop) ── */}
-          <aside className="hidden lg:flex flex-col gap-0 sticky top-8 self-start">
+          <aside className="hidden lg:flex flex-col gap-0 sticky top-20 self-start">
             <div
               className="rounded-2xl border bg-card flex flex-col gap-6 p-7"
               style={{
