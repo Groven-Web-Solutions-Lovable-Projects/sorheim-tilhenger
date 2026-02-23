@@ -158,24 +158,10 @@ const Bunnplater = () => {
 
                 {/* Tykkelser */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Tilgjengelige tykkelser</h3>
-                  <div className="flex items-end gap-3">
-                    {thicknesses.map((t) => (
-                      <div key={t.mm} className="flex flex-col items-center gap-1.5">
-                        {/* Visuell bar som representerer tykkelse */}
-                        <div
-                          className={`w-10 rounded-md ${t.popular ? "bg-primary" : "bg-border"}`}
-                          style={{ height: `${parseInt(t.mm) * 3}px` }}
-                        />
-                        <span className={`text-sm font-bold ${t.popular ? "text-primary" : "text-foreground"}`}>
-                          {t.mm}
-                        </span>
-                        <span className="text-[10px] text-muted-foreground text-center leading-tight max-w-[70px]">
-                          {t.desc}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Tilgjengelige tykkelser</h3>
+                  <p className="text-sm text-foreground">
+                    9 mm · 12 mm <span className="text-muted-foreground">(standard varehengere)</span> · 18 mm · 21 mm
+                  </p>
                 </div>
 
                 {/* CTA */}
