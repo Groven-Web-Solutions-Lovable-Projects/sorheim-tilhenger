@@ -14,10 +14,10 @@ const thicknesses = [
 ];
 
 const otherParts = [
-  { icon: <Wrench size={20} />, label: "Bremser" },
-  { icon: <Lightbulb size={20} />, label: "Lys" },
-  { icon: <Package size={20} />, label: "Beslag & hengsler" },
-  { icon: <Layers size={20} />, label: "Dekk & hjul" },
+  { icon: <Wrench size={22} />, label: "Bremser", desc: "Bremsebakker, wire, justeringsverktøy og komplette bremsegarnityr til alle vanlige merker." },
+  { icon: <Lightbulb size={22} />, label: "Lys & elektro", desc: "Baklys, blinklys, nummerskiltlys, kabelstammer og kontakter – alltid godkjent utstyr." },
+  { icon: <Package size={22} />, label: "Beslag & feste", desc: "Hengsler, skruer, låsemekanismer, sidebord-beslag og annet monteringsutstyr." },
+  { icon: <Layers size={22} />, label: "Dekk & hjul", desc: "Nye dekk, felger og komplette hjul i vanlige dimensjoner for tilhengere." },
 ];
 
 const Bunnplater = () => {
@@ -151,28 +151,51 @@ const Bunnplater = () => {
       </section>
 
       {/* Andre deler */}
-      <section className="py-16 px-6 sm:px-10 bg-secondary">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
-            Trenger du andre deler?
-          </h2>
-          <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
-            Vi har også et bredt utvalg av deler og tilbehør til din tilhenger.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+      <section className="py-20 sm:py-28 px-6 sm:px-10 bg-secondary">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mb-12">
+            <span
+              className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1.5 rounded-full bg-primary text-primary-foreground"
+            >
+              Deler & tilbehør
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
+              Alt du trenger til tilhengeren
+            </h2>
+            <p className="text-muted-foreground text-base leading-relaxed">
+              I tillegg til bunnplater fører vi et bredt sortiment av reservedeler og tilbehør. Vi hjelper deg med å finne riktig del – uansett merke og modell.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {otherParts.map((part) => (
               <div
                 key={part.label}
-                className="flex flex-col items-center gap-3 rounded-xl border border-border bg-white p-6"
+                className="flex items-start gap-5 rounded-2xl border border-border bg-white p-6 sm:p-7 hover:shadow-md transition-shadow duration-200"
               >
-                <span className="text-accent">{part.icon}</span>
-                <span className="text-sm font-semibold text-foreground">{part.label}</span>
+                <div className="shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+                  {part.icon}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-base font-bold text-foreground">{part.label}</span>
+                  <span className="text-sm text-muted-foreground leading-relaxed">{part.desc}</span>
+                </div>
               </div>
             ))}
           </div>
-          <p className="mt-8 text-sm text-muted-foreground">
-            Ta kontakt for pris og tilgjengelighet på alle deler.
-          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <a
+              href="tel:+4797331920"
+              className="btn-primary-hero"
+            >
+              <Phone size={18} />
+              Ring for deler
+            </a>
+            <p className="text-sm text-muted-foreground">
+              Usikker på hva du trenger? Karl hjelper deg finne riktig del.
+            </p>
+          </div>
         </div>
       </section>
 
