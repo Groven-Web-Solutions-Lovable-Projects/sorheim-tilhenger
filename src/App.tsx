@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TrailerDetail from "./pages/TrailerDetail";
+import Bunnplater from "./pages/Bunnplater";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/tilhenger/:id" element={<TrailerDetail />} />
+          <Route path="/bunnplater" element={<Bunnplater />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

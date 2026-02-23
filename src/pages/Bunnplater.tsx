@@ -1,0 +1,210 @@
+import { Phone, ChevronLeft, Ruler, Shield, Layers, Package, Wrench, Lightbulb } from "lucide-react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import Kontakt from "@/components/Kontakt";
+import bunnplaterStackImg from "@/assets/bunnplater-stack.png";
+import bunnplateSingleImg from "@/assets/bunnplate-single.png";
+import karlImg from "@/assets/karl-sorheim.jpg";
+
+const thicknesses = [
+  { mm: "9 mm", desc: "Lett og fleksibel" },
+  { mm: "12 mm", desc: "Standard varehengere", popular: true },
+  { mm: "18 mm", desc: "Ekstra solid" },
+  { mm: "21 mm", desc: "Maks styrke" },
+];
+
+const otherParts = [
+  { icon: <Wrench size={20} />, label: "Bremser" },
+  { icon: <Lightbulb size={20} />, label: "Lys" },
+  { icon: <Package size={20} />, label: "Beslag & hengsler" },
+  { icon: <Layers size={20} />, label: "Dekk & hjul" },
+];
+
+const Bunnplater = () => {
+  return (
+    <main>
+      <Navbar />
+
+      {/* Hero */}
+      <section className="pt-16 bg-secondary">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-12 sm:py-20">
+          {/* Breadcrumb */}
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-8"
+          >
+            <ChevronLeft size={16} />
+            Tilbake til forsiden
+          </Link>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Tekst */}
+            <div className="flex flex-col gap-5">
+              <span
+                className="inline-block self-start text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full"
+                style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+              >
+                Tilhengerdeler
+              </span>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight">
+                Bunnplater for tilhengere
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                Moelven bunnplater med brun, tykk beskyttelse mot fukt og skader. Format 150&nbsp;×&nbsp;300&nbsp;cm – tilgjengelig i flere tykkelser.
+              </p>
+              <a
+                href="tel:+4797331920"
+                className="btn-primary-hero self-start mt-2"
+              >
+                <Phone size={18} />
+                Ring for anbefaling
+              </a>
+            </div>
+
+            {/* Hovedbilde */}
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <img
+                src={bunnplaterStackImg}
+                alt="Stabel med Moelven bunnplater for tilhengere"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Produktdetaljer */}
+      <section className="py-16 sm:py-24 px-6 sm:px-10 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+            {/* Produktbilde */}
+            <div className="rounded-2xl overflow-hidden border border-border bg-muted/30 p-8 flex items-center justify-center">
+              <img
+                src={bunnplateSingleImg}
+                alt="Moelven bunnplate 150 × 300 cm"
+                className="w-full h-auto object-contain max-h-[400px]"
+              />
+            </div>
+
+            {/* Info */}
+            <div className="flex flex-col gap-8">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
+                  Moelven bunnplater
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Opprinnelig fra Montér / Optimera. Brun, tykk overflatebehandling gir solid beskyttelse mot fukt og mekaniske skader. Standardformat 150&nbsp;×&nbsp;300&nbsp;cm passer de fleste tilhengere.
+                </p>
+              </div>
+
+              {/* Spesifikasjoner */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-start gap-3 p-4 rounded-xl border border-border bg-white">
+                  <Ruler size={20} className="text-accent shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-bold text-foreground">Format</p>
+                    <p className="text-sm text-muted-foreground">150 × 300 cm</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 rounded-xl border border-border bg-white">
+                  <Shield size={20} className="text-accent shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-bold text-foreground">Beskyttelse</p>
+                    <p className="text-sm text-muted-foreground">Fukt & skader</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tykkelser */}
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-3">Tilgjengelige tykkelser</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {thicknesses.map((t) => (
+                    <div
+                      key={t.mm}
+                      className={`relative flex flex-col items-center text-center gap-1 rounded-xl px-3 py-4 border ${
+                        t.popular ? "border-accent bg-accent/5" : "border-border bg-white"
+                      }`}
+                    >
+                      {t.popular && (
+                        <span className="absolute -top-2.5 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-accent text-accent-foreground">
+                          Populær
+                        </span>
+                      )}
+                      <span className="text-xl font-extrabold text-foreground">{t.mm}</span>
+                      <span className="text-[11px] text-muted-foreground">{t.desc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pris-note */}
+              <div className="rounded-xl border border-border bg-secondary/50 p-5">
+                <p className="text-sm text-muted-foreground">
+                  <strong className="text-foreground">Pris:</strong> Varierer etter tykkelse og antall. Ring Karl for pris og tilgjengelighet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Andre deler */}
+      <section className="py-16 px-6 sm:px-10 bg-secondary">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
+            Trenger du andre deler?
+          </h2>
+          <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
+            Vi har også et bredt utvalg av deler og tilbehør til din tilhenger.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            {otherParts.map((part) => (
+              <div
+                key={part.label}
+                className="flex flex-col items-center gap-3 rounded-xl border border-border bg-white p-6"
+              >
+                <span className="text-accent">{part.icon}</span>
+                <span className="text-sm font-semibold text-foreground">{part.label}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-sm text-muted-foreground">
+            Ta kontakt for pris og tilgjengelighet på alle deler.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA – kontakt Karl */}
+      <section className="py-16 px-6 sm:px-10 bg-white">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="rounded-2xl border border-border bg-secondary/30 p-8 sm:p-12 flex flex-col items-center gap-5">
+            <img
+              src={karlImg}
+              alt="Karl Sørheim"
+              className="w-20 h-20 rounded-full object-cover border-2 border-white shadow-md"
+            />
+            <h2 className="text-2xl font-extrabold text-foreground">
+              Ring for anbefaling og tilgjengelighet
+            </h2>
+            <p className="text-muted-foreground max-w-md">
+              Karl hjelper deg med å finne riktig bunnplate og tykkelse for din tilhenger – og svarer på spørsmål om andre deler.
+            </p>
+            <a
+              href="tel:+4797331920"
+              className="btn-primary-hero"
+            >
+              <Phone size={18} />
+              Ring 973 31 920
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Kontakt />
+    </main>
+  );
+};
+
+export default Bunnplater;
