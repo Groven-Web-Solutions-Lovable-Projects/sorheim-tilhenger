@@ -25,13 +25,20 @@ const Bunnplater = () => {
     <main>
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-16 bg-secondary">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-12 sm:py-20">
+      {/* Hero – cinematisk */}
+      <section className="relative pt-16 overflow-hidden">
+        {/* Mørk bakgrunn med gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(215_50%_8%)] via-[hsl(212_60%_14%)] to-[hsl(215_40%_10%)]" />
+        
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
+
+        <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 lg:py-32">
           {/* Breadcrumb */}
           <Link
             to="/"
-            className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-8"
+            className="inline-flex items-center gap-1 text-sm font-medium text-white/60 hover:text-white transition-colors mb-10"
+            style={{ animation: "hero-fade-up 0.6s ease-out both" }}
           >
             <ChevronLeft size={16} />
             Tilbake til forsiden
@@ -39,35 +46,64 @@ const Bunnplater = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Tekst */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-6">
               <span
-                className="inline-block self-start text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full"
-                style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+                className="inline-block self-start text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent"
+                style={{ animation: "hero-fade-up 0.6s ease-out 0.1s both" }}
               >
                 Tilhengerdeler
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight">
-                Bunnplater for tilhengere
+              <h1
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight"
+                style={{ animation: "hero-fade-up 0.7s ease-out 0.2s both" }}
+              >
+                Bunnplater for{" "}
+                <span className="text-accent">tilhengere</span>
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                Moelven bunnplater med brun, tykk beskyttelse mot fukt og skader. Format 150&nbsp;×&nbsp;300&nbsp;cm – tilgjengelig i flere tykkelser.
+              <p
+                className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-lg"
+                style={{ animation: "hero-fade-up 0.7s ease-out 0.35s both" }}
+              >
+                Moelven bunnplater med brun, tykk beskyttelse mot fukt og skader. Format 150&nbsp;×&nbsp;300&nbsp;cm – tilgjengelig i fire tykkelser.
               </p>
+
+              {/* Inline specs */}
+              <div
+                className="flex flex-wrap gap-4 mt-1"
+                style={{ animation: "hero-fade-up 0.7s ease-out 0.45s both" }}
+              >
+                {["9 mm", "12 mm", "18 mm", "21 mm"].map((t) => (
+                  <span key={t} className="px-4 py-2 rounded-lg text-sm font-bold text-white bg-white/10 border border-white/10">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
               <a
                 href="tel:+4797331920"
                 className="btn-primary-hero self-start mt-2"
+                style={{ animation: "hero-fade-up 0.7s ease-out 0.55s both" }}
               >
                 <Phone size={18} />
                 Ring for anbefaling
               </a>
             </div>
 
-            {/* Hovedbilde */}
-            <div className="rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src={bunnplaterStackImg}
-                alt="Stabel med Moelven bunnplater for tilhengere"
-                className="w-full h-auto object-cover"
-              />
+            {/* Hovedbilde med glow-effekt */}
+            <div
+              className="relative"
+              style={{ animation: "hero-fade-up 0.8s ease-out 0.3s both" }}
+            >
+              <div className="absolute -inset-4 rounded-3xl bg-accent/20 blur-2xl opacity-40" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                <img
+                  src={bunnplaterStackImg}
+                  alt="Stabel med Moelven bunnplater for tilhengere"
+                  className="w-full h-auto object-cover"
+                />
+                {/* Gradient overlay på bunnkant */}
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/30 to-transparent" />
+              </div>
             </div>
           </div>
         </div>
