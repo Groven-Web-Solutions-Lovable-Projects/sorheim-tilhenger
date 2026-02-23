@@ -159,21 +159,21 @@ const Bunnplater = () => {
                 {/* Tykkelser */}
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Tilgjengelige tykkelser</h3>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex items-end gap-3">
                     {thicknesses.map((t) => (
-                      <span
-                        key={t.mm}
-                        className={`inline-flex items-center gap-1.5 text-sm rounded-lg px-3 py-1.5 ${
-                          t.popular
-                            ? "bg-primary text-primary-foreground font-bold"
-                            : "bg-secondary text-foreground font-semibold border border-border"
-                        }`}
-                      >
-                        {t.mm}
-                        <span className={`text-[11px] font-normal ${t.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
-                          – {t.desc}
+                      <div key={t.mm} className="flex flex-col items-center gap-1.5">
+                        {/* Visuell bar som representerer tykkelse */}
+                        <div
+                          className={`w-10 rounded-md ${t.popular ? "bg-primary" : "bg-border"}`}
+                          style={{ height: `${parseInt(t.mm) * 3}px` }}
+                        />
+                        <span className={`text-sm font-bold ${t.popular ? "text-primary" : "text-foreground"}`}>
+                          {t.mm}
                         </span>
-                      </span>
+                        <span className="text-[10px] text-muted-foreground text-center leading-tight max-w-[70px]">
+                          {t.desc}
+                        </span>
+                      </div>
                     ))}
                   </div>
                 </div>
