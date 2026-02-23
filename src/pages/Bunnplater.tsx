@@ -85,7 +85,8 @@ const Bunnplater = () => {
               </div>
 
               <a
-                href="tel:+4797331920"
+                href="#kontakt"
+                onClick={(e) => { e.preventDefault(); document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" }); }}
                 className="btn-primary-hero self-start mt-2"
                 style={{ animation: "hero-fade-up 0.7s ease-out 0.55s both" }}
               >
@@ -166,7 +167,7 @@ const Bunnplater = () => {
 
                 {/* CTA */}
                 <div className="flex flex-col gap-3 pt-2">
-                  <a href="tel:+4797331920" className="btn-primary-hero self-start">
+                  <a href="#kontakt" onClick={(e) => { e.preventDefault(); document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" }); }} className="btn-primary-hero self-start">
                     <Phone size={18} />
                     Ring for pris
                   </a>
@@ -235,7 +236,8 @@ const Bunnplater = () => {
 
           <div className="mt-12 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <a
-              href="tel:+4797331920"
+              href="#kontakt"
+              onClick={(e) => { e.preventDefault(); document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" }); }}
               className="btn-primary-hero"
             >
               <Phone size={18} />
@@ -264,7 +266,8 @@ const Bunnplater = () => {
               Karl hjelper deg med å finne riktig bunnplate og tykkelse for din tilhenger – og svarer på spørsmål om andre deler.
             </p>
             <a
-              href="tel:+4797331920"
+              href="#kontakt"
+              onClick={(e) => { e.preventDefault(); document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" }); }}
               className="btn-primary-hero"
             >
               <Phone size={18} />
