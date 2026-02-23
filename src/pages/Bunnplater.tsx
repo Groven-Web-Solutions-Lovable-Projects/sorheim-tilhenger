@@ -158,25 +158,22 @@ const Bunnplater = () => {
 
                 {/* Tykkelser */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Tilgjengelige tykkelser</h3>
-                  <div className="flex flex-wrap gap-3">
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Tilgjengelige tykkelser</h3>
+                  <div className="flex flex-wrap gap-2">
                     {thicknesses.map((t) => (
-                      <div
+                      <span
                         key={t.mm}
-                        className={`relative flex flex-col items-center gap-1 rounded-2xl px-5 py-4 min-w-[100px] transition-all duration-200 ${
+                        className={`inline-flex items-center gap-1.5 text-sm rounded-lg px-3 py-1.5 ${
                           t.popular
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-105"
-                            : "bg-secondary border border-border hover:shadow-md"
+                            ? "bg-primary text-primary-foreground font-bold"
+                            : "bg-secondary text-foreground font-semibold border border-border"
                         }`}
                       >
-                        {t.popular && (
-                          <span className="absolute -top-2.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-accent text-accent-foreground">
-                            Populær
-                          </span>
-                        )}
-                        <span className={`text-2xl font-extrabold ${t.popular ? "" : "text-foreground"}`}>{t.mm}</span>
-                        <span className={`text-[11px] ${t.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{t.desc}</span>
-                      </div>
+                        {t.mm}
+                        <span className={`text-[11px] font-normal ${t.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                          – {t.desc}
+                        </span>
+                      </span>
                     ))}
                   </div>
                 </div>
