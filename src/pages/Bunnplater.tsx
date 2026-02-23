@@ -27,17 +27,18 @@ const Bunnplater = () => {
 
       {/* Hero – cinematisk */}
       <section className="relative pt-16 overflow-hidden">
-        {/* Mørk bakgrunn med gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(215_50%_8%)] via-[hsl(212_60%_14%)] to-[hsl(215_40%_10%)]" />
+        {/* Lys gradient med blå toner */}
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-[hsl(210_30%_95%)] to-[hsl(196_40%_92%)]" />
         
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
+        {/* Dekorativ sirkel */}
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-accent/[0.06] blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-3xl" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 lg:py-32">
           {/* Breadcrumb */}
           <Link
             to="/"
-            className="inline-flex items-center gap-1 text-sm font-medium text-white/60 hover:text-white transition-colors mb-10"
+            className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-10"
             style={{ animation: "hero-fade-up 0.6s ease-out both" }}
           >
             <ChevronLeft size={16} />
@@ -48,20 +49,20 @@ const Bunnplater = () => {
             {/* Tekst */}
             <div className="flex flex-col gap-6">
               <span
-                className="inline-block self-start text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent"
+                className="inline-block self-start text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full bg-primary text-primary-foreground"
                 style={{ animation: "hero-fade-up 0.6s ease-out 0.1s both" }}
               >
                 Tilhengerdeler
               </span>
               <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground leading-[1.1] tracking-tight"
                 style={{ animation: "hero-fade-up 0.7s ease-out 0.2s both" }}
               >
                 Bunnplater for{" "}
-                <span className="text-accent">tilhengere</span>
+                <span className="text-primary">tilhengere</span>
               </h1>
               <p
-                className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-lg"
+                className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-lg"
                 style={{ animation: "hero-fade-up 0.7s ease-out 0.35s both" }}
               >
                 Moelven bunnplater med brun, tykk beskyttelse mot fukt og skader. Format 150&nbsp;×&nbsp;300&nbsp;cm – tilgjengelig i fire tykkelser.
@@ -73,7 +74,7 @@ const Bunnplater = () => {
                 style={{ animation: "hero-fade-up 0.7s ease-out 0.45s both" }}
               >
                 {["9 mm", "12 mm", "18 mm", "21 mm"].map((t) => (
-                  <span key={t} className="px-4 py-2 rounded-lg text-sm font-bold text-white bg-white/10 border border-white/10">
+                  <span key={t} className="px-4 py-2 rounded-lg text-sm font-bold text-primary bg-white border border-border shadow-sm">
                     {t}
                   </span>
                 ))}
@@ -94,8 +95,8 @@ const Bunnplater = () => {
               className="relative"
               style={{ animation: "hero-fade-up 0.8s ease-out 0.3s both" }}
             >
-              <div className="absolute -inset-4 rounded-3xl bg-accent/20 blur-2xl opacity-40" />
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+              <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl opacity-40" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border">
                 <img
                   src={bunnplaterStackImg}
                   alt="Stabel med Moelven bunnplater for tilhengere"
