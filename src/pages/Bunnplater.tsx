@@ -1,10 +1,14 @@
-import { Phone, ChevronLeft, Ruler, Shield, Layers, Package, Wrench, Lightbulb } from "lucide-react";
+import { Phone, ChevronLeft, Ruler, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Kontakt from "@/components/Kontakt";
 import bunnplaterStackImg from "@/assets/bunnplater-stack.png";
 import bunnplateTransparentImg from "@/assets/bunnplate-transparent.png";
 import karlImg from "@/assets/karl-sorheim.jpg";
+import delerDekkImg from "@/assets/deler-dekk.png";
+import delerLysImg from "@/assets/deler-lys.png";
+import delerBeslagImg from "@/assets/deler-beslag.png";
+import bockmannImg from "@/assets/bockmann-rear.jpg";
 
 const thicknesses = [
   { mm: "9 mm", desc: "Lett og fleksibel" },
@@ -14,10 +18,10 @@ const thicknesses = [
 ];
 
 const otherParts = [
-  { icon: <Wrench size={22} />, label: "Bremser", desc: "Bremsebakker, wire, justeringsverktøy og komplette bremsegarnityr til alle vanlige merker." },
-  { icon: <Lightbulb size={22} />, label: "Lys & elektro", desc: "Baklys, blinklys, nummerskiltlys, kabelstammer og kontakter – alltid godkjent utstyr." },
-  { icon: <Package size={22} />, label: "Beslag & feste", desc: "Hengsler, skruer, låsemekanismer, sidebord-beslag og annet monteringsutstyr." },
-  { icon: <Layers size={22} />, label: "Dekk & hjul", desc: "Nye dekk, felger og komplette hjul i vanlige dimensjoner for tilhengere." },
+  { image: bockmannImg, label: "Bremser", desc: "Bremsebakker, wire, justeringsverktøy og komplette bremsegarnityr til alle vanlige merker." },
+  { image: delerLysImg, label: "Lys & elektro", desc: "Baklys, blinklys, nummerskiltlys, kabelstammer og kontakter – alltid godkjent utstyr." },
+  { image: delerBeslagImg, label: "Beslag & feste", desc: "Hengsler, skruer, låsemekanismer, sidebord-beslag og annet monteringsutstyr." },
+  { image: delerDekkImg, label: "Dekk & hjul", desc: "Nye dekk, felger og komplette hjul i vanlige dimensjoner for tilhengere." },
 ];
 
 const Bunnplater = () => {
@@ -221,24 +225,30 @@ const Bunnplater = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {otherParts.map((part) => (
               <div
                 key={part.label}
-                className="flex items-start gap-5 rounded-2xl border border-border bg-white p-6 sm:p-7 hover:shadow-md transition-shadow duration-200"
+                className="group rounded-2xl border border-border bg-white overflow-hidden hover:shadow-lg transition-all duration-300"
               >
-                <div className="shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-                  {part.icon}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={part.image}
+                    alt={part.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <h3 className="absolute bottom-4 left-5 text-lg font-bold text-white">{part.label}</h3>
                 </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-base font-bold text-foreground">{part.label}</span>
-                  <span className="text-sm text-muted-foreground leading-relaxed">{part.desc}</span>
+                <div className="p-5">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{part.desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          <div className="mt-12 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <a
               href="tel:+4797331920"
               className="btn-primary-hero"
