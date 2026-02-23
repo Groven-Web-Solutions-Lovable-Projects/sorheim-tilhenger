@@ -1,8 +1,10 @@
 import { Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import logoImg from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Tilhengere", href: "tilhengere" },
+  { label: "Bunnplater", href: "/bunnplater", isPage: true },
   { label: "Innbytte", href: "innbytte" },
   { label: "Kundeomtaler", href: "kundeomtaler" },
 ];
@@ -17,6 +19,16 @@ const scrollTo = (id: string) => {
 };
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleNavClick = (link: typeof navLinks[0]) => {
+    if ((link as any).isPage) {
+      navigate(link.href);
+    } else {
+      scrollTo(link.href);
+    }
+  };
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border"
@@ -38,7 +50,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <button
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => handleNavClick(link)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
