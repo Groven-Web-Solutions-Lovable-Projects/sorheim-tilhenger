@@ -158,7 +158,7 @@ const Bunnplater = () => {
 
                 {/* Tykkelser */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Velg tykkelse</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Tilgjengelige tykkelser</h3>
                   <div className="flex flex-wrap gap-3">
                     {thicknesses.map((t) => (
                       <div
@@ -182,14 +182,27 @@ const Bunnplater = () => {
                 </div>
 
                 {/* CTA */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
-                  <a href="tel:+4797331920" className="btn-primary-hero">
+                <div className="flex flex-col gap-3 pt-2">
+                  <a href="tel:+4797331920" className="btn-primary-hero self-start">
                     <Phone size={18} />
                     Ring for pris
                   </a>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     Pris varierer etter tykkelse og antall.
                   </p>
+                </div>
+
+                {/* Karl – tillitselement */}
+                <div className="flex items-center gap-3 pt-2 border-t border-border">
+                  <img
+                    src={karlImg}
+                    alt="Karl Sørheim"
+                    className="w-11 h-11 rounded-full object-cover border-2 border-white shadow-sm"
+                  />
+                  <div>
+                    <p className="text-sm font-bold text-foreground">Karl Sørheim</p>
+                    <p className="text-xs text-muted-foreground">Hjelper deg finne riktig plate · 973 31 920</p>
+                  </div>
                 </div>
               </div>
             </div>
