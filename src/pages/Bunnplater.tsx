@@ -117,55 +117,56 @@ const Bunnplater = () => {
       {/* Produktdetaljer */}
       <section className="py-20 sm:py-28 px-6 sm:px-10 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
-          {/* Seksjonstittel */}
-          <div className="text-center mb-16">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1.5 rounded-full bg-secondary text-primary">
-              Produktdetaljer
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground">
-              Moelven bunnplater
-            </h2>
-            <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-              Opprinnelig fra Montér / Optimera. Brun, tykk overflatebehandling gir solid beskyttelse mot fukt og mekaniske skader.
-            </p>
-          </div>
+          <div className="relative rounded-3xl border border-border bg-secondary/40 overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
 
-          {/* Produkt-showcase */}
-          <div className="relative">
-            {/* Navy bakgrunnskort */}
-            <div className="rounded-3xl bg-primary py-16 sm:py-20 px-8 sm:px-14 lg:pr-[45%] relative overflow-hidden">
-              {/* Dekorative elementer */}
-              <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/[0.05] to-transparent" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-accent/10 -translate-x-1/2 translate-y-1/2 blur-3xl" />
+              {/* Bilde */}
+              <div className="relative flex items-center justify-center p-10 sm:p-14 bg-gradient-to-br from-secondary to-[hsl(210_25%_92%)]">
+                <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-primary/[0.04] blur-3xl" />
+                <img
+                  src={bunnplateTransparentImg}
+                  alt="Moelven bunnplate 150 × 300 cm"
+                  className="relative w-full max-w-[440px] h-auto object-contain drop-shadow-xl"
+                />
+              </div>
 
-              <div className="relative flex flex-col gap-6">
-                {/* Spesifikasjoner */}
+              {/* Innhold */}
+              <div className="p-8 sm:p-12 flex flex-col justify-center gap-6 bg-white">
+                <div>
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1.5 rounded-full bg-secondary text-primary">
+                    Produktdetaljer
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
+                    Moelven bunnplater
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Opprinnelig fra Montér / Optimera. Brun, tykk overflatebehandling gir solid beskyttelse mot fukt og mekaniske skader. Format <strong className="text-foreground">150&nbsp;×&nbsp;300&nbsp;cm</strong>.
+                  </p>
+                </div>
+
+                {/* Specs */}
                 <div className="flex flex-wrap gap-3">
-                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-secondary border border-border">
                     <Ruler size={16} className="text-accent" />
-                    <span className="text-sm font-semibold text-white">150 × 300 cm</span>
+                    <span className="text-sm font-semibold text-foreground">150 × 300 cm</span>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10">
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-secondary border border-border">
                     <Shield size={16} className="text-accent" />
-                    <span className="text-sm font-semibold text-white">Fukt- & slagbeskyttelse</span>
+                    <span className="text-sm font-semibold text-foreground">Fukt- & slagbeskyttelse</span>
                   </div>
                 </div>
 
-                <p className="text-white/70 leading-relaxed text-base max-w-lg">
-                  Standardformat <strong className="text-white">150&nbsp;×&nbsp;300&nbsp;cm</strong> passer de fleste tilhengere. Velg mellom fire tykkelser avhengig av bruksområde.
-                </p>
-
                 {/* Tykkelser */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Velg tykkelse</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Velg tykkelse</h3>
                   <div className="flex flex-wrap gap-3">
                     {thicknesses.map((t) => (
                       <div
                         key={t.mm}
                         className={`relative flex flex-col items-center gap-1 rounded-2xl px-5 py-4 min-w-[100px] transition-all duration-200 ${
                           t.popular
-                            ? "bg-white text-foreground shadow-xl shadow-black/20 scale-105"
-                            : "bg-white/10 border border-white/10 text-white hover:bg-white/15"
+                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-105"
+                            : "bg-secondary border border-border hover:shadow-md"
                         }`}
                       >
                         {t.popular && (
@@ -173,8 +174,8 @@ const Bunnplater = () => {
                             Populær
                           </span>
                         )}
-                        <span className={`text-2xl font-extrabold ${t.popular ? "text-primary" : ""}`}>{t.mm}</span>
-                        <span className={`text-[11px] ${t.popular ? "text-muted-foreground" : "text-white/60"}`}>{t.desc}</span>
+                        <span className={`text-2xl font-extrabold ${t.popular ? "" : "text-foreground"}`}>{t.mm}</span>
+                        <span className={`text-[11px] ${t.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{t.desc}</span>
                       </div>
                     ))}
                   </div>
@@ -182,27 +183,15 @@ const Bunnplater = () => {
 
                 {/* CTA */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
-                  <a
-                    href="tel:+4797331920"
-                    className="inline-flex items-center gap-2 px-7 py-4 font-semibold text-base rounded-lg bg-white text-primary hover:bg-white/90 transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-black/15"
-                  >
+                  <a href="tel:+4797331920" className="btn-primary-hero">
                     <Phone size={18} />
                     Ring for pris
                   </a>
-                  <p className="text-sm text-white/50">
+                  <p className="text-sm text-muted-foreground">
                     Pris varierer etter tykkelse og antall.
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Floating produktbilde */}
-            <div className="lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 lg:w-[42%] mt-8 lg:mt-0 flex justify-center">
-              <img
-                src={bunnplateTransparentImg}
-                alt="Moelven bunnplate 150 × 300 cm"
-                className="w-full max-w-[500px] h-auto object-contain drop-shadow-2xl lg:rotate-[-4deg] hover:lg:rotate-0 transition-transform duration-500"
-              />
             </div>
           </div>
         </div>
