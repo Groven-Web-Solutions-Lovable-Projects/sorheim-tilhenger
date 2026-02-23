@@ -111,76 +111,88 @@ const Bunnplater = () => {
       </section>
 
       {/* Produktdetaljer */}
-      <section className="py-16 sm:py-24 px-6 sm:px-10 bg-white">
+      <section className="py-20 sm:py-28 px-6 sm:px-10 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          {/* Seksjonstittel */}
+          <div className="text-center mb-14">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1.5 rounded-full bg-secondary text-primary">
+              Produktdetaljer
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground">
+              Moelven bunnplater
+            </h2>
+          </div>
 
-            {/* Produktbilde */}
-            <div className="rounded-2xl overflow-hidden border border-border bg-muted/30 p-8 flex items-center justify-center">
-              <img
-                src={bunnplateSingleImg}
-                alt="Moelven bunnplate 150 × 300 cm"
-                className="w-full h-auto object-contain max-h-[400px]"
-              />
-            </div>
-
-            {/* Info */}
-            <div className="flex flex-col gap-8">
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
-                  Moelven bunnplater
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Opprinnelig fra Montér / Optimera. Brun, tykk overflatebehandling gir solid beskyttelse mot fukt og mekaniske skader. Standardformat 150&nbsp;×&nbsp;300&nbsp;cm passer de fleste tilhengere.
-                </p>
+          {/* Stor feature-card */}
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-secondary via-[hsl(210_30%_95%)] to-[hsl(196_30%_93%)] border border-border">
+            <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+              
+              {/* Bilde – tar 2 kolonner */}
+              <div className="lg:col-span-2 relative flex items-center justify-center p-8 sm:p-12">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent" />
+                <img
+                  src={bunnplateSingleImg}
+                  alt="Moelven bunnplate 150 × 300 cm"
+                  className="relative w-full h-auto object-contain max-h-[350px] drop-shadow-lg"
+                />
               </div>
 
-              {/* Spesifikasjoner */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-start gap-3 p-4 rounded-xl border border-border bg-white">
-                  <Ruler size={20} className="text-accent shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-bold text-foreground">Format</p>
-                    <p className="text-sm text-muted-foreground">150 × 300 cm</p>
+              {/* Innhold – tar 3 kolonner */}
+              <div className="lg:col-span-3 p-8 sm:p-12 flex flex-col justify-center gap-6">
+                <p className="text-muted-foreground leading-relaxed text-base">
+                  Opprinnelig fra Montér / Optimera. Brun, tykk overflatebehandling gir solid beskyttelse mot fukt og mekaniske skader. Standardformat <strong className="text-foreground">150&nbsp;×&nbsp;300&nbsp;cm</strong> passer de fleste tilhengere.
+                </p>
+
+                {/* Specs som horisontale pills */}
+                <div className="flex flex-wrap gap-3">
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-border shadow-sm">
+                    <Ruler size={16} className="text-accent" />
+                    <span className="text-sm font-semibold text-foreground">150 × 300 cm</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-border shadow-sm">
+                    <Shield size={16} className="text-accent" />
+                    <span className="text-sm font-semibold text-foreground">Fukt- & slagbeskyttelse</span>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-4 rounded-xl border border-border bg-white">
-                  <Shield size={20} className="text-accent shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-bold text-foreground">Beskyttelse</p>
-                    <p className="text-sm text-muted-foreground">Fukt & skader</p>
+
+                {/* Tykkelser – visuell linje */}
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-4">Velg tykkelse</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {thicknesses.map((t) => (
+                      <div
+                        key={t.mm}
+                        className={`relative flex flex-col items-center gap-1 rounded-2xl px-5 py-4 min-w-[100px] transition-shadow duration-200 ${
+                          t.popular
+                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 ring-2 ring-primary"
+                            : "bg-white border border-border hover:shadow-md"
+                        }`}
+                      >
+                        {t.popular && (
+                          <span className="absolute -top-2.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-accent text-accent-foreground">
+                            Populær
+                          </span>
+                        )}
+                        <span className={`text-2xl font-extrabold ${t.popular ? "" : "text-foreground"}`}>{t.mm}</span>
+                        <span className={`text-[11px] ${t.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{t.desc}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
 
-              {/* Tykkelser */}
-              <div>
-                <h3 className="text-lg font-bold text-foreground mb-3">Tilgjengelige tykkelser</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {thicknesses.map((t) => (
-                    <div
-                      key={t.mm}
-                      className={`relative flex flex-col items-center text-center gap-1 rounded-xl px-3 py-4 border ${
-                        t.popular ? "border-accent bg-accent/5" : "border-border bg-white"
-                      }`}
-                    >
-                      {t.popular && (
-                        <span className="absolute -top-2.5 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-accent text-accent-foreground">
-                          Populær
-                        </span>
-                      )}
-                      <span className="text-xl font-extrabold text-foreground">{t.mm}</span>
-                      <span className="text-[11px] text-muted-foreground">{t.desc}</span>
-                    </div>
-                  ))}
+                {/* Pris + CTA inline */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+                  <a
+                    href="tel:+4797331920"
+                    className="btn-primary-hero"
+                  >
+                    <Phone size={18} />
+                    Ring for pris
+                  </a>
+                  <p className="text-sm text-muted-foreground">
+                    Pris varierer etter tykkelse og antall.
+                  </p>
                 </div>
-              </div>
-
-              {/* Pris-note */}
-              <div className="rounded-xl border border-border bg-secondary/50 p-5">
-                <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Pris:</strong> Varierer etter tykkelse og antall. Ring Karl for pris og tilgjengelighet.
-                </p>
               </div>
             </div>
           </div>
